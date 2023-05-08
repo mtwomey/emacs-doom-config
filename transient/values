@@ -1,2 +1,3 @@
-((magit-log:magit-log-mode "-n256" "--graph" "--color" "--decorate")
+((dirvish-ls-switches-menu "--all" "--group-directories-first")
+ (magit-log:magit-log-mode "-n256" "--graph" "--color" "--decorate")
  (magit-merge "--no-ff"))

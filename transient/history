@@ -1,8 +1,14 @@
-((dirvish-quick-access nil)
+((dirvish-dired-cheatsheet nil)
+ (dirvish-dispatch nil)
+ (dirvish-ls-switches-menu
+  ("--all" "--group-directories-first"))
+ (dirvish-quick-access nil)
+ (magit-branch nil)
  (magit-commit nil)
  (magit-dispatch nil)
  (magit-fetch nil)
  (magit-log
   ("-n256" "--graph" "--color" "--decorate"))
  (magit-merge
-  ("--no-ff")))
+  ("--no-ff"))
+ (magit-push nil))

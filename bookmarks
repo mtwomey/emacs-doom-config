@@ -1,0 +1,11 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("ssh payments"
+ (filename . "/ssh:payments:/var/www/html/live/crons/")
+ (front-context-string . "hyperwallet\n  dr")
+ (rear-context-string . "31 Feb  3 21:30 ")
+ (position . 275)
+ (last-modified 25689 3391 749852 0))
+)

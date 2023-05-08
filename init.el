@@ -206,4 +206,5 @@
        mod-magit
        evil-mc
        mod-deft
+       mod-bookmarks ;; set location to ~/.config/doom
        )
