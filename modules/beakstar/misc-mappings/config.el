@@ -78,4 +78,7 @@ For example passing '(1 2 3) will return (3 1 2)."
                   :leader "b N" #'save-new-file
 
                   :desc "Delete frame (no prompt)"
-                  :leader "q f" #'delete-frame-without-prompt)))
+                  :leader "q f" #'delete-frame-without-prompt
+
+                  :desc "Switch to buffer" ;; Prevent all these virtual buffers show showing in the switch list
+                  :leader "," #'(lambda () (interactive (call-interactively #'switch-to-buffer))))))
