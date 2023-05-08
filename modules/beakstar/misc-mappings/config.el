@@ -62,6 +62,9 @@ For example passing '(1 2 3) will return (3 1 2)."
                   :desc "Org Insert Link"
                   "s-k" #'org-insert-link
 
+                  :desc "Swiper" ;; Switch / to swiper in normal mode (from evil-ex-search-forward)                                                          ))))))
+                  :n "/" #'swiper
+
                   ;; :desc "Console swiper"
                   ;; :nvm "/" #'swiper ;; Note these states (:nvm) this must go right before the string the rest can be in any order
 

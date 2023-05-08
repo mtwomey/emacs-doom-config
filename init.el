@@ -202,11 +202,11 @@
        doom-utils
        misc-mappings
        dirvish
+       evil-mc
        ace-window
        mod-ui
        mod-ivy-posframe
        mod-magit
-       evil-mc
        mod-deft
        mod-bookmarks ;; set location to ~/.config/doom
        mod-clojure
