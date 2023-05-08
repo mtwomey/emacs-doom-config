@@ -198,6 +198,7 @@
 
 
        :beakstar
+       beakstar-utils ;; My own utility functions
        doom-utils
        misc-mappings
        dirvish
