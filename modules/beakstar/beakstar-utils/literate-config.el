@@ -2,12 +2,12 @@
   "runs system curl command on selection or user input and inserts
 the results in the buffer."
   (interactive "r")
-  (let ((url (if (use-region-p)
-                 (buffer-substring-no-properties start end)
+  (let ((url (if (use-region-p) (buffer-substring-no-properties start end)
                (read-string "url: "))))
-    (ignore-errors (deactivate-mark))
+    (ignore-errors
+      (deactivate-mark))
     (end-of-line)
-    (insert (concat "\n" (s-replace-regexp "\r" "" (shell-command-to-string (concat "curl -s -i '" url "'")))))
+    (insert (concat "\n" (s-replace-regexp "" "" (shell-command-to-string (concat "curl -s -i '" url "'")))))
     (beginning-of-line)))
 
 (defun occur-from-search ()
@@ -18,13 +18,10 @@ you can do something with them.
 Note: Assumes evil search, so you may need to tweak for your needs."
   (interactive)
   (let ((search-pattern evil-ex-search-pattern))
-    (if search-pattern
-        (let ((capture-type (if (zerop (regexp-opt-depth (nth 0 search-pattern)))
-                                "\\&" ;; No subexpression so collect the entire match.
-                              "\\1"))) ;; Get the first subexpression
-          (occur (nth 0 search-pattern)
-                 capture-type)
-          (other-window 1))
+    (if search-pattern (let ((capture-type (if (zerop (regexp-opt-depth (nth 0 search-pattern))) "\\&"
+                                             "\\1")))
+                         (occur (nth 0 search-pattern) capture-type)
+                         (other-window 1))
       (message "First search with '/'."))))
 
 
@@ -58,6 +55,15 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   "Run function with universal arg"
   (setq current-prefix-arg '(4)) ;; Strangely "4" is the universal arg. Should have been "42" lol
   (call-interactively f))
+
+(defun format-elisp ()
+  "Format the selected region as emacs-lisp code."
+  (interactive)
+    (if (region-active-p)
+        (let ((str (buffer-substring (region-beginning) (region-end))))
+          (delete-region (region-beginning) (region-end))
+          (pp-emacs-lisp-code (read str))))
+      (message "No active region."))
 
 (defun add-base64-padding (base64-str)
   "Add padding to base64 encoded string if necessary."
