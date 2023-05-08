@@ -6,6 +6,12 @@
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")))
 
+;; Show all files except . and ..
+(setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
+
+;; This would disable turning on omit-mode, but we want to omit . and ..
+;; (remove-hook 'dired-mode-hook 'dired-omit-mode)
+
 (after! dirvish
   (dirvish-override-dired-mode)
   (map! :map dirvish-mode-map
