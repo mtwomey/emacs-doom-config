@@ -1,0 +1,47 @@
+(defun hugo-clean ()
+  (interactive)
+  (ignore-errors (delete-process "hugorun"))
+                 (ignore-errors (delete-directory "~/org-mode/blog/hugo/static/ox-hugo" t))
+                 (ignore-errors (delete-directory "~/org-mode/blog/hugo/content" t))
+                 (ignore-errors (delete-directory "~/org-mode/blog/hugo/resources" t)))
+
+(defun hugo-start ()
+  (interactive)
+  (let ((original-directory default-directory))
+    (cd "~/org-mode/blog/hugo")
+    (start-process "hugorun" nil "/usr/local/bin/hugo" "serve")
+    (cd original-directory)))
+
+(defun hugo-stop ()
+  (interactive)
+  (ignore-errors (delete-process "hugorun")))
+
+(defun hugo-restart ()
+  (interactive)
+  (hugo-stop)
+  (hugo-start))
+
+(defun hugo-export-dir (dir regex)
+  (interactive "sDirectory: \nsRegex: ")
+  (let ((current-buffer-save (current-buffer)))
+    (mapc (lambda (filename)
+            (let ((bufferExists (seq-some #'numberp ;; Tests if the buffer is already open so we don't close it after export
+                                          (mapcar (lambda (b)
+                                                    (string-match-p (buffer-name b)
+                                                                    filename))
+                                                  (buffer-list)))))
+              (message "Filename: %s" filename)
+              (let ((buffer (find-file filename)))
+                (org-hugo-export-wim-to-md)
+                (if bufferExists
+                    nil
+                  (kill-buffer buffer)))))
+          (directory-files-recursively dir regex))
+    (switch-to-buffer current-buffer-save)))
+
+(defun hugo-reexport-blog ()
+  (interactive)
+  (hugo-stop)
+  (hugo-clean)
+  (hugo-export-dir "~/org-mode/blog" ".*\.org$")
+  (hugo-start))

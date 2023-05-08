@@ -1,0 +1,16 @@
+diff -ruN ./config.el ../new/config.el
+--- ./config.el	2023-05-07 21:33:29
++++ ../new/config.el	2023-05-07 20:50:46
+@@ -22,9 +22,9 @@
+   :init
+   (setq magit-auto-revert-mode nil)  ; we do this ourselves further down
+   ;; Must be set early to prevent ~/.config/emacs/transient from being created
+-  (setq transient-levels-file  (concat doom-data-dir "transient/levels")
+-        transient-values-file  (concat doom-data-dir "transient/values")
+-        transient-history-file (concat doom-data-dir "transient/history"))
++  (setq transient-levels-file  "~/.config/doom/transient/levels"
++        transient-values-file  "~/.config/doom/transient/values"
++        transient-history-file "~/.config/doom/transient/history")
+   :config
+   (add-to-list 'doom-debug-variables 'magit-refresh-verbose)
+ 

@@ -1,0 +1,5 @@
+;; (load-file "~/.config/emacs/.local/straight/repos/dirvish/dirvish-widgets.el")
+;; (load-file "~/.config/emacs/.local/straight/repos/dirvish/dirvish-extras.el")
+;; (load-file "~/.config/emacs/.local/straight/repos/dirvish/extensions/dirvish-icons.el")
+;; (load-file "~/.config/emacs/.local/straight/repos/dirvish/extensions/dirvish-quick-access.el")
+;; (load-file "~/.config/emacs/.local/straight/repos/dirvish/extensions/dirvish-history.el")

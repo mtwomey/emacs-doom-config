@@ -1,0 +1,6 @@
+((dirvish-quick-access nil)
+ (magit-dispatch nil)
+ (magit-log
+  ("-n256" "--graph" "--color" "--decorate"))
+ (magit-merge
+  ("--no-ff")))

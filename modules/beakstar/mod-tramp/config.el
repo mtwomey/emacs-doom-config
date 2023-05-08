@@ -1,0 +1,5 @@
+(require 'tramp)
+(add-to-list 'tramp-remote-path "/home/mtwomey/bin")
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+(require 'eshell)
+(eshell/addpath "/home/mtwomey/bin")
