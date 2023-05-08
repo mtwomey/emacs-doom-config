@@ -8,15 +8,19 @@
 #+startup: shrink
 :end:
 
-
+* Basic preference settings
 #+begin_src emacs-lisp
 (after! deft
+  (set-evil-initial-state! 'deft-mode 'emacs)
   (setq deft-directory "~/org-mode")
+  (setq deft-recursive t)
+  (setq deft-extensions '("txt" "org"))
+  (setq deft-use-filename-as-title t)
+  (setq deft-current-sort-method 'title)
+#+end_src
 
-  (add-hook 'deft-mode-hook
-            (lambda ()
-              (add-to-list 'evil-emacs-state-modes 'deft-mode)))
-
+* Keymaps
+#+begin_src emacs-lisp
   (map! :map deft-mode-map
 
         :desc "next line"
@@ -35,7 +39,10 @@
         :e "C-SPC" #'doom/leader
 
         :desc "deft-filter-clear"
-        :e "C-<backspace>" #'deft-filter-clear)
+        :e "C-<backspace>" #'deft-filter-clear
+
+        :desc "kill-this-buffer"
+        :e "C-q" #'kill-this-buffer)
 
   (setq deft-auto-save-interval 0))
 #+end_src
