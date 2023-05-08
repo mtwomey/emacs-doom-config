@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: REPL Filter Classpath
+# key: %repl-fcp
+# expand-env: ((yas-indent-line 'fixed))
+# group: REPL snips
+# --
+(defn filter-classpath
+  "Show items from the classpath containing \\"string\\"."
+  [s]
+  (->> (java.lang.System/getProperty "java.class.path")
+       (re-seq #"[^:]+")
+       (filter #(clojure.string/includes? % s))))

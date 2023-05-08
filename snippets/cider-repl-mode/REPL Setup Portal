@@ -1,0 +1,18 @@
+# key: %portal
+# name: REPL Setup Portal
+# expand-env: ((yas-indent-line 'fixed))
+# --
+;; Hook up portal
+;; Send below to repl then use (tap> *1) to send last result
+(require '[portal.api :as p])
+(def p (p/open))
+(add-tap #'p/submit)
+
+;; These can be used for more detailed logging to portal
+;; E.g. - timestamps, ..etc. Use instead of tap>
+(require '[portal.console :as log])
+(log/trace ::trace)
+(log/debug ::debug)
+(log/info  ::info)
+(log/warn  ::warn)
+(log/error ::error)

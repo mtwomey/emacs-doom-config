@@ -1,0 +1,5 @@
+# key: %defnk
+# name: defn with keys
+# --
+(defn ${1:FUNCTION-NAME} [& {:keys [${2:PARAMS}]}]
+  $0)

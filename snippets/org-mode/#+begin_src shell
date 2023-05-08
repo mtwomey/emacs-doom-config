@@ -1,0 +1,7 @@
+# name: #+begin_src shell
+# key: %csh
+# --
+
+#+begin_src shell
+$0
+#+end_src

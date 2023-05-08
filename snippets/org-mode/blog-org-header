@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: blog-org-header
+# key: %blog-org-header
+# --
+#+TITLE: ${1:titel}
+#+hugo_base_dir: ~/org-mode/blog/hugo
+#+hugo_menu: :menu main :weight 1001
+#+STARTUP: showeverything
+
+$0
