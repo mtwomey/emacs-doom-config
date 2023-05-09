@@ -110,33 +110,3 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   "Wipe the recent files list."
   (interactive)
   (setq recentf-list nil))
-
-(setq beakstar-ivy-switch-buffers-ignore-names
-      '("*new*"
-        "*scratch*"
-        "*Async-native-compile-log*"
-        "*Native-compile-Log*"
-        "*lsp-log*"
-        "*ts-ls*"
-        "*ts-ls::stderr*"
-        "*clojure-lsp*"
-        "*clojure-lsp::stderr*"))
-
-
-(setq beakstar-ivy-switch-buffers-ignore-regexes
-      '("\\`*Dirvish-"))
-
-(defun beakstar-ivy-switch-buffer ()
-  "Calls ivy-switch-buffer ignoring any buffers in beakstar-ivy-switch-buffers-ignore-names
-or that match a regex in beakstar-ivy-switch-buffers-ignore-regexes.
-Calling it with the universal argument will show all buffers."
-  (interactive)
-  (if current-prefix-arg
-      (ivy-switch-buffer)
-    (let ((ivy-ignore-buffers (append
-                               beakstar-ivy-switch-buffers-ignore-regexes
-                               '((lambda (b)
-                                   (if (member b beakstar-ivy-switch-buffers-ignore-names)
-                                       0
-                                     nil))))))
-      (ivy-switch-buffer))))
