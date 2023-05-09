@@ -144,22 +144,32 @@ Note: Assumes evil search, so you may need to tweak for your needs."
 * Custom ivy-switch-buffer
 
 #+begin_src emacs-lisp
-(setq ivy-ignore-buffers-list
+(setq beakstar-ivy-switch-buffers-ignore-names
       '("*new*"
         "*scratch*"
         "*Async-native-compile-log*"
         "*Native-compile-Log*"
         "*lsp-log*"
         "*ts-ls*"
-        "*ts-ls::stderr*"))
+        "*ts-ls::stderr*"
+        "*clojure-lsp*"
+        "*clojure-lsp::stderr*"))
+
+
+(setq beakstar-ivy-switch-buffers-ignore-regexes
+      '("\\`*Dirvish-"))
 
 (defun beakstar-ivy-switch-buffer ()
   "Calls ivy-switch-buffer ignoring any buffers in the ivy-ignore-buffers-list.
 Calling it will the universal argument will show all buffers."
   (interactive)
-  (let ((ivy-ignore-buffers '((lambda (b)
-                                (if current-prefix-arg 0
-                                  (if (member b ivy-ignore-buffers-list) 0
-                                    nil))))))
-    (ivy-switch-buffer)))
+  (if current-prefix-arg
+      (ivy-switch-buffer)
+    (let ((ivy-ignore-buffers (append
+                               beakstar-ivy-switch-buffers-ignore-regexes
+                               '((lambda (b)
+                                   (if (member b beakstar-ivy-switch-buffers-ignore-names)
+                                       0
+                                     nil))))))
+      (ivy-switch-buffer))))
 #+end_src
