@@ -110,3 +110,22 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   "Wipe the recent files list."
   (interactive)
   (setq recentf-list nil))
+
+(setq ivy-ignore-buffers-list
+      '("*new*"
+        "*scratch*"
+        "*Async-native-compile-log*"
+        "*Native-compile-log*"
+        "*lsp-log*"
+        "*ts-ls*"
+        "*ts-ls::stderr*"))
+
+(defun beakstar-ivy-switch-buffer ()
+  "Calls ivy-switch-buffer ignoring any buffers in the ivy-ignore-buffers-list.
+Calling it will the universal argument will show all buffers."
+  (interactive)
+  (let ((ivy-ignore-buffers '((lambda (b)
+                                (if current-prefix-arg 0
+                                  (if (member b ivy-ignore-buffers-list) 0
+                                    nil))))))
+    (ivy-switch-buffer)))

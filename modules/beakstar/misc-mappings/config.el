@@ -63,7 +63,7 @@ For example passing '(1 2 3) will return (3 1 2)."
                   "s-k" #'org-insert-link
 
                   :desc "Swiper" ;; Switch / to swiper in normal mode (from evil-ex-search-forward)                                                          ))))))
-                  :n "/" #'swiper
+                  :nvm "/" #'swiper
 
                   ;; :desc "Console swiper"
                   ;; :nvm "/" #'swiper ;; Note these states (:nvm) this must go right before the string the rest can be in any order
@@ -84,4 +84,7 @@ For example passing '(1 2 3) will return (3 1 2)."
                   :leader "q f" #'delete-frame-without-prompt
 
                   :desc "Switch to buffer" ;; Prevent all these virtual buffers show showing in the switch list
-                  :leader "," #'(lambda () (interactive (call-interactively #'switch-to-buffer))))))
+                  ;; :leader "," #'(lambda () (interactive (call-interactively #'switch-to-buffer)))
+                  :leader "," #'beakstar-ivy-switch-buffer
+
+                  )))

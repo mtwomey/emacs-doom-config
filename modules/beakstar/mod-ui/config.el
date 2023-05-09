@@ -47,6 +47,20 @@
                    (buffer-name buf)))
 (add-to-list 'doom-real-buffer-functions #'new-buffer-p)
 
+;; (defun messages-buffer-p (buf)
+;;   "Returns true if this buffer name starts with *new*"
+;;   (string-prefix-p "*Messages*"
+;;                    (buffer-name buf)))
+;; (add-to-list 'doom-real-buffer-functions #'messages-buffer-p)
+
+;; Additional buffers to consider "real" (so I can cycle / switch to them)
+;; (defun beakstar-buffer-p (buf)
+;;   "Returns true if buffer matches rules."
+;;   (string-match-p "^*Messages*" (buffer-name buf)))
+
+;; (add-to-list 'doom-real-buffer-functions #'beakstar-buffer-p)
+
+
 ;; Allow horizontal mouse scrolling
 (setq mouse-wheel-flip-direction t
       mouse-wheel-tilt-scroll t)
