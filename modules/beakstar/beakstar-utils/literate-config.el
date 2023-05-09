@@ -127,8 +127,9 @@ Note: Assumes evil search, so you may need to tweak for your needs."
       '("\\`*Dirvish-"))
 
 (defun beakstar-ivy-switch-buffer ()
-  "Calls ivy-switch-buffer ignoring any buffers in the ivy-ignore-buffers-list.
-Calling it will the universal argument will show all buffers."
+  "Calls ivy-switch-buffer ignoring any buffers in beakstar-ivy-switch-buffers-ignore-names
+or that match a regex in beakstar-ivy-switch-buffers-ignore-regexes.
+Calling it with the universal argument will show all buffers."
   (interactive)
   (if current-prefix-arg
       (ivy-switch-buffer)
