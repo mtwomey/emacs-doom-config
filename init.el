@@ -211,4 +211,5 @@
        mod-bookmarks ;; set location to ~/.config/doom
        mod-clojure
        mod-ivy
+       mod-ivy-posframe
        )

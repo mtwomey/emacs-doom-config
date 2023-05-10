@@ -1,0 +1,105 @@
+#+TITLE: mod-ivy-postframe
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Config Settings
+
+#+begin_src emacs-lisp
+(after! ivy-posframe
+  (set-face-attribute 'ivy-posframe nil :foreground "white" :background "#181818")
+  (set-face-attribute 'ivy-posframe-border nil :background "#046307")
+  (setq ivy-posframe-border-width 3
+        ivy-posframe-parameters '((left-fringe . 4) (right-fringe . 4))
+        ivy-posframe-min-width 160)
+
+  (ivy-posframe-mode 1))
+#+end_src
+
+* Keymap
+
+#+begin_src emacs-lisp
+(map! :map ivy-posframe-mode-map
+      :desc "ivy-immediate-done"
+      "C-<return>" #'ivy-immediate-done)
+#+end_src
+
+
+* Hack to workaround how the posframe doesn't show up in the right place after moving the frame with the mouse
+
+#+begin_src emacs-lisp
+(advice-add 'ivy-posframe--display :before #'(lambda (&rest _)
+                                               (let* ((parent-window (selected-window))
+                                                      (parent-frame (window-frame parent-window))
+                                                      (parent-frame-width (frame-pixel-width parent-frame))
+                                                      (parent-frame-height (frame-pixel-height parent-frame))
+                                                      (posframe (window-frame (ivy-posframe--window)))
+                                                      (posframe-width (frame-pixel-width posframe))
+                                                      (posframe-height (frame-pixel-height posframe))
+                                                      (info (list :parent-frame-width parent-frame-width
+                                                                  :parent-frame-height parent-frame-height
+                                                                  :posframe-width posframe-width
+                                                                  :posframe-height posframe-height))
+                                                      (position (posframe-poshandler-frame-center info))
+                                                      (position (cons (car position) (truncate (* (cdr position) 1.5)))))
+
+                                                 ;; (message "%s" (prin1-to-string parent-window))
+                                                 ;; (message "%s" (prin1-to-string parent-frame))
+                                                 ;; (message "%s" (prin1-to-string parent-frame-width))
+                                                 ;; (message "%s" (prin1-to-string parent-frame-height))
+                                                 ;; (message "%s" (prin1-to-string posframe))
+                                                 ;; (message "%s" (prin1-to-string posframe-width))
+                                                 ;; (message "%s" (prin1-to-string posframe-height))
+                                                 ;; (message "%s" (prin1-to-string (plist-get info :parent-frame-width)))
+                                                 ;; (message "%s" (prin1-to-string position))
+
+                                                 (posframe--set-frame-position posframe position parent-frame-width parent-frame-height)
+                                                 ;; (posframe-refresh ivy-posframe-buffer)
+                                                 )))
+#+end_src
+
+(defun +ivy-poshandler-frame-center-near-bottom-fn (info)
+  "TODO"
+  (let ((parent-frame (plist-get info :parent-frame))
+        (pos (posframe-poshandler-frame-center info)))
+    (cons (car pos)
+          (truncate (/ (frame-pixel-height parent-frame) 2)))))
+
+
+(defun posframe-poshandler-frame-center (info)
+  "Posframe's position handler.
+
+This poshandler function let center of posframe align to center
+of frame.
+
+The structure of INFO can be found in docstring of
+`posframe-show'."
+  (cons (/ (- (plist-get info :parent-frame-width)
+              (plist-get info :posframe-width))
+           2)
+        (/ (- (plist-get info :parent-frame-height)
+              (plist-get info :posframe-height))
+           2)))
+
+(defun posframe--set-frame-position (posframe position
+                                              parent-frame-width
+                                              parent-frame-height)
+
+
+                        ;; (message "%s" (prin1-to-string (frame-position)))
+;;                        (message "%s" (prin1-to-string poshandler))
+                        ;; (posframe--set-frame-position ivy-posframe-buffer position parent-frame-width parent-frame-height)
+                      ;; (posframe--set-frame-position ivy-posframe-buffer (+ivy-poshandler-frame-center-near-bottom-fn) 200 200)
+
+
+      (posframe--set-frame-position
+       posframe position parent-frame-width parent-frame-height)
+
++ivy-poshandler-frame-center-near-bottom-fn
+
+Error in post-command-hook (ivy--queue-exhibit): (wrong-number-of-arguments ((t) (info) "TODO" (let ((parent-frame (plist-get info :parent-frame)) (pos (posframe-poshandler-frame-center info))) (cons (car pos) (truncate (/ (frame-pixel-height parent-frame) 2))))) 0)
