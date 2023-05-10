@@ -11,6 +11,15 @@
       :desc "ivy-immediate-done"
       "C-<return>" #'ivy-immediate-done)
 
+(defun posframe-poshandler-beakstar (info)
+    (cons (/ (- (plist-get info :parent-frame-width)
+              (plist-get info :posframe-width))
+           2)
+          (/ (plist-get info :parent-frame-height) 2)
+        ))
+
+(advice-add '+ivy-poshandler-frame-center-near-bottom-fn :override 'posframe-poshandler-beakstar)
+
 (advice-add 'ivy-posframe--display :before #'(lambda (&rest _)
                                                (let* ((parent-window (selected-window))
                                                       (parent-frame (window-frame parent-window))
@@ -23,9 +32,9 @@
                                                                   :parent-frame-height parent-frame-height
                                                                   :posframe-width posframe-width
                                                                   :posframe-height posframe-height))
-                                                      (position (posframe-poshandler-frame-center info))
-                                                      (position (cons (car position) (truncate (* (cdr position) 1.5)))))
+                                                      (position (posframe-poshandler-beakstar info)))
 
+                                                 ;; (message "%s" (prin1-to-string (frame-pixel-height parent-frame)))
                                                  ;; (message "%s" (prin1-to-string parent-window))
                                                  ;; (message "%s" (prin1-to-string parent-frame))
                                                  ;; (message "%s" (prin1-to-string parent-frame-width))
@@ -35,7 +44,11 @@
                                                  ;; (message "%s" (prin1-to-string posframe-height))
                                                  ;; (message "%s" (prin1-to-string (plist-get info :parent-frame-width)))
                                                  ;; (message "%s" (prin1-to-string position))
+                                                 ;; (message "%s" (prin1-to-string (car position)))
 
-                                                 (posframe--set-frame-position posframe position parent-frame-width parent-frame-height)
+                                                 ;; (posframe--set-frame-position posframe position parent-frame-width parent-frame-height)
+
+                                                 (when (not (= (car position) 0)) (posframe--set-frame-position posframe position parent-frame-width parent-frame-height))
+
                                                  ;; (posframe-refresh ivy-posframe-buffer)
                                                  )))
