@@ -29,8 +29,11 @@
       "C-<return>" #'ivy-immediate-done)
 #+end_src
 
-
 * Hack to workaround how the posframe doesn't show up in the right place after moving the frame with the mouse
+
+This was a real bitch to get working right. Neither the posframe nor ivy-posframe libs have a function to reset the position. It was also a huge pain to figure out what function to advise and how.
+
+Right now, I'm trying to leverage the built in poshandler function (and tweaking the result a little), but I might be better off just calculating the position I want on my own.
 
 #+begin_src emacs-lisp
 (advice-add 'ivy-posframe--display :before #'(lambda (&rest _)
