@@ -212,4 +212,5 @@
        mod-clojure
        mod-ivy
        mod-ivy-posframe
+       prettier-js
        )
