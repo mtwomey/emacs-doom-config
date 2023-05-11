@@ -67,7 +67,10 @@ Note: Assumes evil search, so you may need to tweak for your needs."
 
 (defun add-base64-padding (base64-str)
   "Add padding to base64 encoded string if necessary."
-  (let ((padding-length (- 4 (% (length base64-str) 4))))
+  (let* ((remainder (% (length base64-str) 4))
+         (padding-length (cond ((= remainder 2) 2)
+                               ((= remainder 3) 1)
+                               (t 0))))
     (concat base64-str (make-string padding-length ?=))))
 
 (defun decode-jwt (jwt)
