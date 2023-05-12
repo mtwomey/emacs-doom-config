@@ -72,7 +72,7 @@ For example passing '(1 2 3) will return (3 1 2)."
                   ;; :nvm "/" #'consult-line
 
                   :desc "Kill buffer & window"
-                  :leader "b d" #'kill-buffer-and-window ;; I can do all these bindings in bulk, but once I start with the ones that use :leader, I can't do "non-leader" ones anymore after that...
+                  :leader "w k" #'kill-buffer-and-window ;; I can do all these bindings in bulk, but once I start with the ones that use :leader, I can't do "non-leader" ones anymore after that...
 
                   :desc "Ace window"
                   :leader "w w" #'ace-window
