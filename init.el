@@ -213,5 +213,6 @@
        mod-ivy
        mod-ivy-posframe
        prettier-js
+       shell-pop
        mod-org-mode
        )
