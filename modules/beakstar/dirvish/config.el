@@ -1,10 +1,12 @@
+
 (setq dirvish-attributes '(all-the-icons subtree-state file-size))
 
 (map! :desc "Open dirvish" :leader "." #'dirvish)
 
 (setq dirvish-quick-access-entries '(("h" "~/" "Home")
                                      ("g" "~/Git_Repos" "Git Repos")
-                                     ("d" "~/.config/doom" "Doom")))
+                                     ("d" "~/.config/doom" "Doom")
+                                     ("t" "/tmp" "tmp")))
 
 ;; Show all files except . and ..
 (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
@@ -15,8 +17,17 @@
 (after! dirvish
   (dirvish-override-dired-mode)
   (map! :map dirvish-mode-map
-        :desc "Search file names"
+        :desc "Perform fd search"
         :nvi "/" #'dirvish-fd
+
+        :desc "Live narrowing"
+        :nvi "n" #'dirvish-narrow
+
+        :desc "Sort current buffer"
+        :nvi "s" #'dirvish-quicksort
+
+        :desc "Get file information"
+        :nvi "i" #'dirvish-file-info-menu
 
         :desc "dired find file"
         :nvi "C-l" #'dired-find-file
@@ -50,7 +61,9 @@
                    (interactive)
                    (progn
                      (dirvish-quit)
-                     (+dired/quit-all)))))
+                     (+dired/quit-all))))
+
+  (setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g"))
 
 ;; Permissions problems when trying to use the mac trash based delete
 (setq delete-by-moving-to-trash nil)

@@ -1,14 +1,36 @@
 ((dirvish-dired-cheatsheet nil)
  (dirvish-dispatch nil)
+ (dirvish-file-info-menu nil)
+ (dirvish-history-menu nil)
  (dirvish-ls-switches-menu
-  ("--all" "--group-directories-first"))
+  ("--time-style=locale" "--group-directories-first")
+  ("--time-style=locale" "--group-directories-first" "--human-readable")
+  ("--all" "--time-style=locale" "--group-directories-first" "--no-group" "-g")
+  ("--all" "--time-style=locale" "--group-directories-first")
+  ("--all" "--group-directories-first")
+  ("--group-directories-first")
+  ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g")
+  ("--time-style=locale" "--group-directories-first" "--human-readable" "--size")
+  ("--time-style=locale" "--group-directories-first" "--human-readable" "-g" "--numeric-uid-gid")
+  ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g" "--numeric-uid-gid"))
  (dirvish-quick-access nil)
+ (dirvish-quicksort nil)
+ (dirvish-subtree-menu nil)
+ (magit-blame
+  ("-w"))
  (magit-branch nil)
  (magit-commit nil)
+ (magit-diff
+  ("--no-ext-diff" "--stat")
+  (("--" "api/reviews.js")))
  (magit-dispatch nil)
  (magit-fetch nil)
  (magit-log
   ("-n256" "--graph" "--color" "--decorate"))
  (magit-merge
   ("--no-ff"))
- (magit-push nil))
+ (magit-pull nil)
+ (magit-push nil)
+ (magit-rebase
+  ("--autostash"))
+ (magit-stash nil))
