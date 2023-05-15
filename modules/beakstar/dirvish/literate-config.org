@@ -43,7 +43,7 @@
     (+dired/quit-all)))
 #+end_src
 
-* Key Map
+* Key Maps
 
 #+begin_src emacs-lisp
 (map! :desc "Open dirvish"
@@ -84,58 +84,3 @@
       :desc "Kill Dirvish"
       :nvi "<escape>" #'kill-dirvish)
 #+end_src
-
-)
-
-
-
-;; This would disable turning on omit-mode, but we want to omit . and ..
-;; (remove-hook 'dired-mode-hook 'dired-omit-mode)
-
-(after! dirvish
-  (dirvish-override-dired-mode)
-  (map! :map dirvish-mode-map
-        :desc "Perform fd search"
-        :nvi "/" #'dirvish-fd
-
-        :desc "Live narrowing"
-        :nvi "n" #'dirvish-narrow
-
-        :desc "Sort current buffer"
-        :nvi "s" #'dirvish-quicksort
-
-        :desc "Get file information"
-        :nvi "i" #'dirvish-file-info-menu
-
-        :desc "dired find file"
-        :nvi "C-l" #'dired-find-file
-        :desc "dired find file"
-        :nvi "l" #'dired-find-file
-
-        :desc "dired up directory"
-        :nvi "C-h" #'dired-up-directory
-        :desc "dired up directory"
-        :nvi "h" #'dired-up-directory
-
-        :desc "dired previous line"
-        :nvi "C-k" #'dired-previous-line
-        :desc "dired previous line"
-        :nvi "k" #'dired-previous-line
-
-        :desc "dired next line"
-        :nvi "C-j" #'dired-next-line
-        :desc "dired next line"
-        :nvi "j" #'dired-next-line
-
-        :desc "Dirvish Dispatch"
-        :nvi "?" #'dirvish-dispatch
-
-        :nvi "g" #'revert-buffer
-
-        :desc "Quick Access"
-        :nvi "a" #'dirvish-quick-access
-
-        :desc "Kill Dirvish"
-        :nvi "q" #'kill-dirvish
-        :desc "Kill Dirvish"
-        :nvi "<escape>" #'kill-dirvish))

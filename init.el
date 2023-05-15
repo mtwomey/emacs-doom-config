@@ -215,4 +215,5 @@
        prettier-js
        shell-pop
        mod-org-mode
+       evil-cleverparens
        )

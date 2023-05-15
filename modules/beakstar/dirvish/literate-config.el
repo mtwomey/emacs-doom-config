@@ -7,6 +7,7 @@
 ;; Permissions problems when trying to use the mac trash based delete
 (setq delete-by-moving-to-trash nil)
 
+;; Required
 (dirvish-override-dired-mode)
 
 (setq dirvish-quick-access-entries '(("h" "~/" "Home")
