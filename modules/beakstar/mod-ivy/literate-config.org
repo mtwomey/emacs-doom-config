@@ -46,26 +46,15 @@ Calling it with the universal argument will show all buffers."
 (map! :desc "Switch to buffer" :leader "," #'beakstar-ivy-switch-buffer)
 #+end_src
 
-* After Ivy (start)
-
-#+begin_src emacs-lisp
-(after! ivy
-#+end_src
-
-** Patch to fix "Error in post-command-hook (ivy--queue-exhibit)..."
+* Patch to fix "Error in post-command-hook (ivy--queue-exhibit)..."
 
 From: https://github.com/Yevgnen/ivy-rich/issues/115
 This is an issue in ivy-rich, doom hasn't updated yet.
-
+kkkjjj
 #+begin_src emacs-lisp
-(defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
-(cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
-    (apply orig-fun args)))
-(advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!)
-#+end_src
-
-** After Ivy (end)
-
-#+begin_src emacs-lisp
-)
+(after! ivy (defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
+              (cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
+                (apply orig-fun args))))
+(after! ivy
+  (advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!))
 #+end_src

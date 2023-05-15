@@ -30,11 +30,8 @@ Calling it with the universal argument will show all buffers."
 
 (map! :desc "Switch to buffer" :leader "," #'beakstar-ivy-switch-buffer)
 
+(after! ivy (defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
+              (cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
+                (apply orig-fun args))))
 (after! ivy
-
-(defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
-(cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
-    (apply orig-fun args)))
-(advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!)
-
-)
+  (advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!))
