@@ -1,0 +1,141 @@
+#+TITLE: Dirvish
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* General settings
+
+#+begin_src emacs-lisp
+(setq dirvish-attributes '(all-the-icons subtree-state file-size))
+(setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g")
+
+;; Show all files except . and ..
+(setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
+
+;; Permissions problems when trying to use the mac trash based delete
+(setq delete-by-moving-to-trash nil)
+
+;; Required
+(dirvish-override-dired-mode)
+#+end_src
+
+* Quick Access Entries
+
+#+begin_src emacs-lisp
+(setq dirvish-quick-access-entries '(("h" "~/" "Home")
+                                     ("g" "~/Git_Repos" "Git Repos")
+                                     ("d" "~/.config/doom" "Doom")
+                                     ("t" "/tmp" "tmp")))
+#+end_src
+
+* Utility Functions
+
+#+begin_src emacs-lisp
+(defun kill-dirvish ()
+  (interactive)
+  (progn
+    (dirvish-quit)
+    (+dired/quit-all)))
+#+end_src
+
+* Key Map
+
+#+begin_src emacs-lisp
+(map! :desc "Open dirvish"
+      :leader "." #'dirvish)
+
+(map! :map dirvish-mode-map
+      :desc "Perform fd search"
+      :nvi "/" #'dirvish-fd
+      :desc "Live narrowing"
+      :nvi "n" #'dirvish-narrow
+      :desc "Sort current buffer"
+      :nvi "s" #'dirvish-quicksort
+      :desc "Get file information"
+      :nvi "i" #'dirvish-file-info-menu
+      :desc "dired find file"
+      :nvi "C-l" #'dired-find-file
+      :desc "dired find file"
+      :nvi "l" #'dired-find-file
+      :desc "dired up directory"
+      :nvi "C-h" #'dired-up-directory
+      :desc "dired up directory"
+      :nvi "h" #'dired-up-directory
+      :desc "dired previous line"
+      :nvi "C-k" #'dired-previous-line
+      :desc "dired previous line"
+      :nvi "k" #'dired-previous-line
+      :desc "dired next line"
+      :nvi "C-j" #'dired-next-line
+      :desc "dired next line"
+      :nvi "j" #'dired-next-line
+      :desc "Dirvish Dispatch"
+      :nvi "?" #'dirvish-dispatch
+      :nvi "g" #'revert-buffer
+      :desc "Quick Access"
+      :nvi "a" #'dirvish-quick-access
+      :desc "Kill Dirvish"
+      :nvi "q" #'kill-dirvish
+      :desc "Kill Dirvish"
+      :nvi "<escape>" #'kill-dirvish)
+#+end_src
+
+)
+
+
+
+;; This would disable turning on omit-mode, but we want to omit . and ..
+;; (remove-hook 'dired-mode-hook 'dired-omit-mode)
+
+(after! dirvish
+  (dirvish-override-dired-mode)
+  (map! :map dirvish-mode-map
+        :desc "Perform fd search"
+        :nvi "/" #'dirvish-fd
+
+        :desc "Live narrowing"
+        :nvi "n" #'dirvish-narrow
+
+        :desc "Sort current buffer"
+        :nvi "s" #'dirvish-quicksort
+
+        :desc "Get file information"
+        :nvi "i" #'dirvish-file-info-menu
+
+        :desc "dired find file"
+        :nvi "C-l" #'dired-find-file
+        :desc "dired find file"
+        :nvi "l" #'dired-find-file
+
+        :desc "dired up directory"
+        :nvi "C-h" #'dired-up-directory
+        :desc "dired up directory"
+        :nvi "h" #'dired-up-directory
+
+        :desc "dired previous line"
+        :nvi "C-k" #'dired-previous-line
+        :desc "dired previous line"
+        :nvi "k" #'dired-previous-line
+
+        :desc "dired next line"
+        :nvi "C-j" #'dired-next-line
+        :desc "dired next line"
+        :nvi "j" #'dired-next-line
+
+        :desc "Dirvish Dispatch"
+        :nvi "?" #'dirvish-dispatch
+
+        :nvi "g" #'revert-buffer
+
+        :desc "Quick Access"
+        :nvi "a" #'dirvish-quick-access
+
+        :desc "Kill Dirvish"
+        :nvi "q" #'kill-dirvish
+        :desc "Kill Dirvish"
+        :nvi "<escape>" #'kill-dirvish))
