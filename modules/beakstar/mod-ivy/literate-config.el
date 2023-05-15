@@ -9,6 +9,10 @@
       "*clojure-lsp*"
       "*clojure-lsp::stderr*"))
 
+(defun beakstar-ivy-ignore-buffer? (b)
+  (if (member b beakstar-ivy-switch-buffers-ignore-names)
+      0
+    nil))
 
 (setq beakstar-ivy-switch-buffers-ignore-regexes
         '("\\`*Dirvish-"))
@@ -18,14 +22,9 @@
 or that match a regex in beakstar-ivy-switch-buffers-ignore-regexes.
 Calling it with the universal argument will show all buffers."
   (interactive)
-  (if current-prefix-arg
-      (ivy-switch-buffer)
-    (let ((ivy-ignore-buffers (append
-                               beakstar-ivy-switch-buffers-ignore-regexes
-                               '((lambda (b)
-                                   (if (member b beakstar-ivy-switch-buffers-ignore-names)
-                                       0
-                                     nil))))))
+  (if current-prefix-arg (ivy-switch-buffer)
+    (let ((ivy-ignore-buffers (append beakstar-ivy-switch-buffers-ignore-regexes
+                                      '(beakstar-ivy-ignore-buffer?))))
       (ivy-switch-buffer))))
 
 (map! :desc "Switch to buffer" :leader "," #'beakstar-ivy-switch-buffer)
