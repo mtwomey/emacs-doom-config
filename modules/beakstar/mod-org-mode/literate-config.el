@@ -10,8 +10,13 @@
 (map! :map org-mode-map :nv "j" #'evil-next-visual-line)
 (map! :map org-mode-map :nv "k" #'evil-previous-visual-line)
 
-(setq org-superstar-headline-bullets-list '(8859 8855 8857 10047))
-(setq org-superstar-item-bullet-alist '((42 . 8226) (43 . 8226) (45 . 9702)))
+(setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
+(setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+
+(advice-add #'org-superstar--prettify-main-hbullet :after
+            (lambda (&rest r)
+              (put-text-property (match-beginning 1) (match-end 1)
+                                 'display '(raise 0.1))))
 
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)

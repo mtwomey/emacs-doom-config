@@ -8,7 +8,6 @@
 #+startup: shrink
 :end:
 
-
 * Directory Locations
 
 #+begin_src emacs-lisp
@@ -34,8 +33,19 @@
 ** Bullets
 
 #+begin_src emacs-lisp
-(setq org-superstar-headline-bullets-list '(8859 8855 8857 10047))
-(setq org-superstar-item-bullet-alist '((42 . 8226) (43 . 8226) (45 . 9702)))
+(setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
+(setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+#+end_src
+
+** Raise the bullets up just a tad
+
+Right now, I don't think there is a way to do this directly without advice.
+
+#+begin_src emacs-lisp
+(advice-add #'org-superstar--prettify-main-hbullet :after
+            (lambda (&rest r)
+              (put-text-property (match-beginning 1) (match-end 1)
+                                 'display '(raise 0.1))))
 #+end_src
 
 ** Font / UI
@@ -49,7 +59,7 @@
 
 * Previous / unused stuff
 
-Note the :tangle no on this block which prevents it from being used.
+Note the =:tangle no= on this block which prevents it from being used.
 
 #+begin_src emacs-lisp :tangle no
 (require 'org-mouse)
