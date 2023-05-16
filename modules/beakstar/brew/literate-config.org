@@ -1,0 +1,43 @@
+#+TITLE: brew
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Core Functions
+#+begin_src emacs-lisp
+(defun brew-ls-formula ()
+  "Run 'brew ls --formula' and return the output as a string."
+  (interactive)
+  (shell-command-to-string "brew ls --formula"))
+
+(defun brew-ls-cask ()
+  "Run 'brew ls --cask' and return the output as a string."
+  (interactive)
+  (shell-command-to-string "brew ls --cask"))
+
+(defun brew-ls-formula-and-cask ()
+  "Run 'brew ls --formula' and 'brew ls --cask', and combine the output in a new buffer with headers."
+  (interactive)
+  (let ((output-buffer (generate-new-buffer "*brew-ls-formula-and-cask*")))
+    (with-current-buffer output-buffer
+      (insert "Formulas:\n\n")
+      (insert (brew-ls-formula))
+      (insert "\nCasks:\n\n")
+      (insert (brew-ls-cask))
+    (switch-to-buffer output-buffer))))
+
+(defun brew-test1 ()
+  "Run 'brew ls --formula' and 'brew ls --cask', and display the output as a selectable list."
+  (interactive)
+  (let ((formula-output (shell-command-to-string "brew ls --formula"))
+        (cask-output (shell-command-to-string "brew ls --cask")))
+    (ivy-read "Select a package: "
+              (split-string (concat formula-output "\n" cask-output) "\n")
+              :action #'message)))
+
+#+end_src

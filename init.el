@@ -216,4 +216,5 @@
        shell-pop
        mod-org-mode
        evil-cleverparens
+       brew
        )
