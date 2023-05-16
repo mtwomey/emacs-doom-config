@@ -7,11 +7,14 @@
 (setq doom-font (font-spec :family "Hack"
                            :size 14
                            :weight 'regular)
+
       doom-variable-pitch-font
       (font-spec :family "Input Sans") ; inherits `doom-font''s :size
+
       doom-unicode-font
       (font-spec :family "Input Mono Narrow"
                  :size 30)
+
       doom-big-font
       (font-spec :family "Fira Mono"
                  :size 19))

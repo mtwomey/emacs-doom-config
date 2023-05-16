@@ -26,11 +26,14 @@
  (magit-dispatch nil)
  (magit-fetch nil)
  (magit-log
-  ("-n256" "--graph" "--color" "--decorate"))
+  ("-n256" "--graph" "--color" "--decorate")
+  ("-n256" "--simplify-by-decoration" "--graph" "--color" "--decorate"))
  (magit-merge
   ("--no-ff"))
  (magit-pull nil)
  (magit-push nil)
  (magit-rebase
   ("--autostash"))
+ (magit-revert
+  ("--edit"))
  (magit-stash nil))
