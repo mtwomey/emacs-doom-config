@@ -48,13 +48,28 @@ Right now, I don't think there is a way to do this directly without advice.
                                  'display '(raise 0.1))))
 #+end_src
 
-** Font / UI
+** UI
 
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook 'variable-pitch-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
 
 (setq org-hide-emphasis-markers t) ;; Hide markup things like / / around italics and * * around bold
+#+end_src
+
+** Fonts
+
+I debate whether this should go in my theme or if I want to control this separately. I'll keep it here for now.
+
+#+begin_src emacs-lisp
+(custom-set-faces '(org-block ((t (:extend t
+                                   :background "#151515151515"
+                                   :slant normal
+                                   :weight regular
+                                   :height 1.0
+                                   :width semi-condensed
+                                   :foundry "nil"
+                                   :family "Hack")))))
 #+end_src
 
 * Previous / unused stuff

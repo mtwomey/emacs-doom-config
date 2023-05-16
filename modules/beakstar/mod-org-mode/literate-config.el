@@ -22,3 +22,12 @@
 (add-hook 'org-mode-hook 'flyspell-mode)
 
 (setq org-hide-emphasis-markers t) ;; Hide markup things like / / around italics and * * around bold
+
+(custom-set-faces '(org-block ((t (:extend t
+                                   :background "#151515151515"
+                                   :slant normal
+                                   :weight regular
+                                   :height 1.0
+                                   :width semi-condensed
+                                   :foundry "nil"
+                                   :family "Hack")))))
