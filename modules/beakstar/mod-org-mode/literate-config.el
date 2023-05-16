@@ -7,8 +7,9 @@
 (setq +org-capture-todo-file "~/org-mode/capture/todo.org")
 (setq +org-capture-projects-file "~/org-mode/capture/projects.org")
 
-(map! :map org-mode-map :nv "j" #'evil-next-visual-line)
-(map! :map org-mode-map :nv "k" #'evil-previous-visual-line)
+(map! :map org-mode-map
+      :nv "j" #'evil-next-visual-line
+      :nv "k" #'evil-previous-visual-line)
 
 (setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
 (setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))

@@ -24,8 +24,9 @@
 * Key Maps
 
 #+begin_src emacs-lisp
-(map! :map org-mode-map :nv "j" #'evil-next-visual-line)
-(map! :map org-mode-map :nv "k" #'evil-previous-visual-line)
+(map! :map org-mode-map
+      :nv "j" #'evil-next-visual-line
+      :nv "k" #'evil-previous-visual-line)
 #+end_src
 
 * Look and Feel
