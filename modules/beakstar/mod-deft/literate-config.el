@@ -27,6 +27,10 @@
         :e "C-<backspace>" #'deft-filter-clear
 
         :desc "kill-this-buffer"
-        :e "C-q" #'kill-this-buffer)
+        :e "C-q" #'kill-this-buffer
+
+        :desc "kill deft"
+        :e "<escape>" #'(lambda () (interactive) (kill-buffer (current-buffer))))
+
 
   (setq deft-auto-save-interval 0))
