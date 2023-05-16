@@ -3,6 +3,7 @@
       "*scratch*"
       "*Async-native-compile-log*"
       "*Native-compile-Log*"
+      "*Compile-Log*"
       "*lsp-log*"
       "*ts-ls*"
       "*ts-ls::stderr*"
@@ -31,4 +32,5 @@ Calling it with the universal argument will show all buffers."
 
 (after! ivy (defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
               (cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
-                (apply orig-fun args))))
+                (apply orig-fun args)))
+  (advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!))

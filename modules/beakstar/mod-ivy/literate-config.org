@@ -18,6 +18,7 @@ I don't love workspaces and I also like to be able to see the buffers I care abo
       "*scratch*"
       "*Async-native-compile-log*"
       "*Native-compile-Log*"
+      "*Compile-Log*"
       "*lsp-log*"
       "*ts-ls*"
       "*ts-ls::stderr*"
@@ -57,5 +58,6 @@ This is an issue in ivy-rich, doom hasn't updated yet.
 #+begin_src emacs-lisp
 (after! ivy (defun ivy-rich--switch-buffer-directory! (orig-fun &rest args)
               (cl-letf (((symbol-function 'directory-file-name) #'file-name-directory))
-                (apply orig-fun args))))
+                (apply orig-fun args)))
+  (advice-add 'ivy-rich--switch-buffer-directory :around #'ivy-rich--switch-buffer-directory!))
 #+end_src
