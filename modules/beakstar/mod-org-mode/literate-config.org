@@ -60,7 +60,7 @@ Right now, I don't think there is a way to do this directly without advice.
 
 ** Fonts
 
-I debate whether this should go in my theme or if I want to control this separately. I'll keep it here for now.
+I debate whether this should go in my theme or if I want to control this separately. I'll keep it here for now. I opened a [[https://github.com/integral-dw/org-superstar-mode/issues/48][feature request]] for a way to do this within org-superstar-mode.
 
 #+begin_src emacs-lisp
 (custom-set-faces '(org-block ((t (:extend t
