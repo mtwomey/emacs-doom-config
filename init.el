@@ -213,7 +213,7 @@
        mod-ivy
        mod-ivy-posframe
        prettier-js
-       shell-pop
+       term-toggle
        mod-org-mode
        evil-cleverparens
        brew

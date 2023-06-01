@@ -1,0 +1,18 @@
+#+TITLE: term-toggle
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Load the thing
+
+I like this better than shell-pop because it uses term-mode rather than shell-mode for ansi-terms. There is no melpa for it, so I have it here directly. The home for it is [[https://github.com/amno1/emacs-term-toggle][here]].
+
+#+begin_src emacs-lisp
+(let ((current-directory (file-name-directory (or load-file-name buffer-file-name))))
+  (load (concat current-directory "term-toggle.el")))
+#+end_src

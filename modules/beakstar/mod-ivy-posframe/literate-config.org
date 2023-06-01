@@ -24,7 +24,7 @@
 * Keymap
 
 #+begin_src emacs-lisp
-(map! :map ivy-posframe-mode-map
+(map! :map ivy-posframe-mode-map ;; Helpful for renaming something to a short version of the existing name.
       :desc "ivy-immediate-done"
       "C-<return>" #'ivy-immediate-done)
 #+end_src
