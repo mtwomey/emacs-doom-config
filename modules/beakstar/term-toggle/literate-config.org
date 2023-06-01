@@ -13,6 +13,6 @@
 I like this better than shell-pop because it uses term-mode rather than shell-mode for ansi-terms. There is no melpa for it, so I have it here directly. The home for it is [[https://github.com/amno1/emacs-term-toggle][here]].
 
 #+begin_src emacs-lisp
-(let ((current-directory (file-name-directory (or load-file-name buffer-file-name))))
-  (load (concat current-directory "term-toggle.el")))
+(with-current-directory (this-directory)
+                        (load "term-toggle.el"))
 #+end_src

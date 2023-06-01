@@ -1,0 +1,30 @@
+#+TITLE: Beakstar Utilities (init.el)
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+Things that should load early before anything else. Core utility functions.
+
+* this-directory
+
+#+begin_src emacs-lisp
+(defun this-directory ()
+  (file-name-directory (or load-file-name buffer-file-name)))
+#+end_src
+
+* Do things using a specific directory
+
+This is actually my first real macro!
+
+#+begin_src emacs-lisp
+(defmacro with-current-directory (directory &rest body)
+  "Execute body setting the default directory and load-path."
+  `(let ((load-path (cons ,directory load-path))
+         (default-directory ,directory))
+     ,@body))
+#+end_src
