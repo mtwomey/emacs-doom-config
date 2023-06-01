@@ -155,3 +155,9 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (interactive)
   (setq recentf-list nil))
 #+end_src
+
+* Provide beakstar-utils
+
+#+begin_src emacs-lisp
+(provide 'beakstar-utils)
+#+end_src

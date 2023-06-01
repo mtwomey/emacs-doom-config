@@ -119,3 +119,5 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   "Wipe the recent files list."
   (interactive)
   (setq recentf-list nil))
+
+(provide 'beakstar-utils)
