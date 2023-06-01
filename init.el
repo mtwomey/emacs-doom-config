@@ -198,7 +198,7 @@
 
 
        :beakstar
-       beakstar-utils ;; My own utility functions
+       beakstar-utils ;; My own utility functions - load this first just in case
        doom-utils
        misc-mappings
        dirvish

@@ -3,11 +3,11 @@
  (dirvish-file-info-menu nil)
  (dirvish-history-menu nil)
  (dirvish-ls-switches-menu
+  ("--all" "--group-directories-first")
   ("--time-style=locale" "--group-directories-first")
   ("--time-style=locale" "--group-directories-first" "--human-readable")
   ("--all" "--time-style=locale" "--group-directories-first" "--no-group" "-g")
   ("--all" "--time-style=locale" "--group-directories-first")
-  ("--all" "--group-directories-first")
   ("--group-directories-first")
   ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g")
   ("--time-style=locale" "--group-directories-first" "--human-readable" "--size")
