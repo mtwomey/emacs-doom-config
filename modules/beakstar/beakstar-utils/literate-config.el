@@ -109,11 +109,11 @@ Note: Assumes evil search, so you may need to tweak for your needs."
     (delete-region begin end)
     (insert (base64-decode-string (add-base64-padding s)))))
 
-(require 'shell-pop) ;; Needed to make sure shell-pop is loaded first
-(defun pearpop-payout ()
-  (interactive)
-  (shell-pop-up (or 0 shell-pop-last-shell-buffer-index))
-  (term-send-raw-string (concat "pearpop-payout \n")))
+(after! term-toggle
+  (defun pearpop-payout ()
+    (interactive)
+    (term-toggle-ansi)
+    (term-send-raw-string (concat "pearpop-payout \n"))))
 
 (defun purge-recent-files ()
   "Wipe the recent files list."
