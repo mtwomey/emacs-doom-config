@@ -156,6 +156,26 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (setq recentf-list nil))
 #+end_src
 
+* UUIDs
+
+I didn't do the math on exactly what's going on here bitwise myself. I'm nearly certain that it generates spec compliant V4 UUIDs. However, it seems to always have a '4' in the /second/ position of the 3rd "stanza" and that shouldn't be restricted. So I should revisit this at some point so it's more fully random.
+
+[[https://www.cryptosys.net/pki/uuid-rfc4122.html][Here]] is the full, correct algorithm in English.
+
+#+begin_src emacs-lisp
+(defun insert-v4-uuids (num-uuids)
+  "Generate a number of V4 UUIDs adhering to the V4 specification and insert them into the current buffer, one per line."
+  (interactive "nHow many UUIDs to generate? ")
+  (dotimes (_ num-uuids)
+    (let ((uuid (format "%04x%04x-%04x-4%03x-%04x-%04x%04x%04x"
+                        (random (expt 16 4)) (random (expt 16 4))
+                        (random (expt 16 4))
+                        (logior (logand (random (expt 16 4)) #x0fff) #x4000)
+                        (logior (logand (random (expt 16 4)) #x3fff) #x8000)
+                        (random (expt 16 4)) (random (expt 16 4)) (random (expt 16 4)))))
+      (insert (concat uuid "\n")))))
+#+end_src
+
 * Provide beakstar-utils
 
 #+begin_src emacs-lisp

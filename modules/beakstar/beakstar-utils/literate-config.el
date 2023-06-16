@@ -120,4 +120,16 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (interactive)
   (setq recentf-list nil))
 
+(defun insert-v4-uuids (num-uuids)
+  "Generate a number of V4 UUIDs adhering to the V4 specification and insert them into the current buffer, one per line."
+  (interactive "nHow many UUIDs to generate? ")
+  (dotimes (_ num-uuids)
+    (let ((uuid (format "%04x%04x-%04x-4%03x-%04x-%04x%04x%04x"
+                        (random (expt 16 4)) (random (expt 16 4))
+                        (random (expt 16 4))
+                        (logior (logand (random (expt 16 4)) #x0fff) #x4000)
+                        (logior (logand (random (expt 16 4)) #x3fff) #x8000)
+                        (random (expt 16 4)) (random (expt 16 4)) (random (expt 16 4)))))
+      (insert (concat uuid "\n")))))
+
 (provide 'beakstar-utils)
