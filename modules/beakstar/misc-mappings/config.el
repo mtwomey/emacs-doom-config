@@ -83,4 +83,7 @@ For example passing '(1 2 3) will return (3 1 2)."
                   :desc "Delete frame (no prompt)"
                   :leader "q f" #'delete-frame-without-prompt
 
+                  :desc "Open ansi terminal"
+                  :leader "o s" #'term-toggle-ansi
+
                   )))

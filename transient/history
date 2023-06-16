@@ -19,6 +19,9 @@
  (magit-blame
   ("-w"))
  (magit-branch nil)
+ (magit-cherry-pick
+  ("--ff")
+  nil)
  (magit-commit nil)
  (magit-diff
   ("--no-ext-diff" "--stat")
@@ -29,11 +32,13 @@
   ("-n256" "--graph" "--color" "--decorate")
   ("-n256" "--simplify-by-decoration" "--graph" "--color" "--decorate"))
  (magit-merge
-  ("--no-ff"))
+  ("--no-ff")
+  nil)
  (magit-pull nil)
  (magit-push nil)
  (magit-rebase
-  ("--autostash"))
+  ("--autostash")
+  nil)
  (magit-reset nil)
  (magit-revert
   ("--edit"))
