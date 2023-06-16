@@ -21,9 +21,9 @@
 
 ;; Initial frame size
 (setq initial-frame-alist '((top . 0)
-                            (left . 0)
-                            (width . (text-pixels . 1420)) ;; I don't know why but it's adding 20 to this 1420, resulting in 1440 which is what I want..
-                            (height . (text-pixels . 847))))
+                            (left . 47)
+                            (width . (text-pixels . 1445)) ;; I don't know why but it's adding 20 to this 1420, resulting in 1440 which is what I want..
+                            (height . (text-pixels . 909))))
 
 ;; Set color theme
 ;; (defun color-theme-beakstar-dusk ()
