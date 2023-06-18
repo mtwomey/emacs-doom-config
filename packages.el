@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! load-env-vars)
+(package! zprint-mode)
