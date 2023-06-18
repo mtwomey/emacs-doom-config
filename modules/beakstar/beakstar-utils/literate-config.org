@@ -156,6 +156,17 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (setq recentf-list nil))
 #+end_src
 
+* Insert Zero Width Space
+
+Just to make this a bit faster. Manly for breaking the interpretation of special characters in org-mode.
+
+#+begin_src emacs-lisp
+(defun insert-zero-width-space ()
+  "Inserts a Unicode zero-width space character."
+  (interactive)
+  (insert "\u200B"))
+#+end_src
+
 * UUIDs
 
 I didn't do the math on exactly what's going on here bitwise myself. I'm nearly certain that it generates spec compliant V4 UUIDs. However, it seems to always have a '4' in the /second/ position of the 3rd "stanza" and that shouldn't be restricted. So I should revisit this at some point so it's more fully random.

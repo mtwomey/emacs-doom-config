@@ -120,6 +120,11 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (interactive)
   (setq recentf-list nil))
 
+(defun insert-zero-width-space ()
+  "Inserts a Unicode zero-width space character."
+  (interactive)
+  (insert "\u200B"))
+
 (defun insert-v4-uuids (num-uuids)
   "Generate a number of V4 UUIDs adhering to the V4 specification and insert them into the current buffer, one per line."
   (interactive "nHow many UUIDs to generate? ")
