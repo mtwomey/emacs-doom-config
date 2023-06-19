@@ -218,4 +218,5 @@
        evil-cleverparens
        brew
        org-download
+       image-drawers
        )
