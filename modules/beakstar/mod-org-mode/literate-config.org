@@ -73,6 +73,8 @@ I debate whether this should go in my theme or if I want to control this separat
                                    :family "Hack")))))
 #+end_src
 
+
+* Image Drawers
 * Previous / unused stuff
 
 Note the =:tangle no= on this block which prevents it from being used.

@@ -1,0 +1,55 @@
+#+TITLE: org-download
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Config Settings
+
+=org-image-actual-width nil= turns off default / global image sizes so that I can deal with size per image.
+
+#+begin_src emacs-lisp
+(use-package! org-download
+  :after org
+  :defer nil
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir "images")
+  (org-download-heading-lvl nil)
+  (org-download-timestamp "%Y%m%d-%H%M%S_")
+  (org-image-actual-width 300)
+  (org-download-screenshot-method "/usr/local/bin/pngpaste %s"))
+
+(after! org-download
+  (setq org-image-actual-width nil
+        org-download-annotate-function #'org-download-annotate-with-image-drawer))
+#+end_src
+
+* Annotate pasted images with an image drawer
+
+#+begin_src emacs-lisp
+(defun org-download-annotate-with-image-drawer (link)
+  "Annotate LINK with and image drawer."
+  (message ":IMAGE_INFO:\n#+ATTR_HTML: :width 200\n:END:\n"))
+#+end_src
+
+* Enable org-download
+
+#+begin_src emacs-lisp
+(after! org
+  (message "Emabling org-download")
+  (org-download-enable))
+#+end_src
+
+
+* Keymap
+
+#+begin_src emacs-lisp
+(map! :mode org-mode
+      :desc "insert image from clipboard"
+      "s-V" #'org-download-clipboard)
+#+end_src

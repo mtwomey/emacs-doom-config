@@ -217,4 +217,5 @@
        mod-org-mode
        evil-cleverparens
        brew
+       org-download
        )
