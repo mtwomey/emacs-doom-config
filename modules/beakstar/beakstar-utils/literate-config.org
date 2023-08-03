@@ -167,6 +167,18 @@ Just to make this a bit faster. Manly for breaking the interpretation of special
   (insert "\u200B"))
 #+end_src
 
+* Reset font scale
+
+Note this is currently hard-coded to a font height of 140, which is what I'm using. So this would need to change if I wanted a different height.
+
+You can see the current height with =(face-attribute 'default :height)=.
+#+begin_src emacs-lisp
+(defun reset-font-scale ()
+  (interactive)
+  (set-face-attribute 'default nil :height 140)
+  (text-scale-set 0))
+#+end_src
+
 * UUIDs
 
 I didn't do the math on exactly what's going on here bitwise myself. I'm nearly certain that it generates spec compliant V4 UUIDs. However, it seems to always have a '4' in the /second/ position of the 3rd "stanza" and that shouldn't be restricted. So I should revisit this at some point so it's more fully random.

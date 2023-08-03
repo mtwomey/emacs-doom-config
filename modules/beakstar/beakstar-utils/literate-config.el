@@ -125,6 +125,11 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (interactive)
   (insert "\u200B"))
 
+(defun reset-font-scale ()
+  (interactive)
+  (set-face-attribute 'default nil :height 140)
+  (text-scale-set 0))
+
 (defun insert-v4-uuids (num-uuids)
   "Generate a number of V4 UUIDs adhering to the V4 specification and insert them into the current buffer, one per line."
   (interactive "nHow many UUIDs to generate? ")
