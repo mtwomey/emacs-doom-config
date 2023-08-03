@@ -51,3 +51,4 @@
 
 (package! load-env-vars)
 (package! zprint-mode)
+(package! string-inflection)
