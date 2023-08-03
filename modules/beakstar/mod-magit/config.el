@@ -1,6 +1,7 @@
 (map! :map magit-mode-map
       :desc "magit log all"
       :leader "g l"#'magit-log-all)
+(setq magit-repository-directories '(("/Users/mtwomey/Git_Repos" . 1)))
 
 ;; (after! magit
 ;;   (defun kill-magit-diff-buffer-in-current-repo (&rest _)
