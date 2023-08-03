@@ -71,6 +71,9 @@ For example passing '(1 2 3) will return (3 1 2)."
                   ;; :desc "Consult Line"
                   ;; :nvm "/" #'consult-line
 
+                  :desc "er/expand-region"
+                  :nvm "C-s-e" #'er/expand-region
+
                   :desc "Kill buffer & window"
                   :leader "w k" #'kill-buffer-and-window ;; I can do all these bindings in bulk, but once I start with the ones that use :leader, I can't do "non-leader" ones anymore after that...
 
