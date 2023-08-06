@@ -21,6 +21,18 @@
     (dirvish-quit)
     (+dired/quit-all)))
 
+;; (file-directory-p file) is it a directory
+
+;; (advice-add #'dired-find-file :after
+;;             (lambda (&rest r)
+;;               ;; (message "I am here")
+;;               (when (not (file-directory-p (dired-file-name-at-point)))
+;;                   (kill-dirvish))
+;;               ;; (message (dired-file-name-at-point))
+;;               ;; (message r)
+;;               ;; (kill-dirvish)
+;;               ))
+
 (map! :desc "Open dirvish"
       :leader "." #'dirvish)
 
