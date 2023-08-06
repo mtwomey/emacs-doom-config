@@ -179,6 +179,27 @@ You can see the current height with =(face-attribute 'default :height)=.
   (text-scale-set 0))
 #+end_src
 
+* Move sexp
+
+Seen [[http://yummymelon.com/devnull/moving-text-elegantly-in-emacs.html][here]].
+
+#+begin_src emacs-lisp
+(defun cc/move-sexp-backward ()
+  "Move balanced expression (sexp) to the right of point backward one sexp.
+Point must be at the beginning of balanced expression (sexp)."
+  (interactive)
+  (transpose-sexps 1)
+  (forward-sexp -2))
+
+(defun cc/move-sexp-forward ()
+  "Move balanced expression (sexp) to the right of point forward one sexp.
+Point must be at the beginning of balanced expression (sexp)."
+  (interactive)
+  (forward-sexp 1)
+  (transpose-sexps 1)
+  (forward-sexp -1))
+#+end_src
+
 * UUIDs
 
 I didn't do the math on exactly what's going on here bitwise myself. I'm nearly certain that it generates spec compliant V4 UUIDs. However, it seems to always have a '4' in the /second/ position of the 3rd "stanza" and that shouldn't be restricted. So I should revisit this at some point so it's more fully random.

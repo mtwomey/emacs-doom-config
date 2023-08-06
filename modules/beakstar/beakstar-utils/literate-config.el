@@ -130,6 +130,21 @@ Note: Assumes evil search, so you may need to tweak for your needs."
   (set-face-attribute 'default nil :height 140)
   (text-scale-set 0))
 
+(defun cc/move-sexp-backward ()
+  "Move balanced expression (sexp) to the right of point backward one sexp.
+Point must be at the beginning of balanced expression (sexp)."
+  (interactive)
+  (transpose-sexps 1)
+  (forward-sexp -2))
+
+(defun cc/move-sexp-forward ()
+  "Move balanced expression (sexp) to the right of point forward one sexp.
+Point must be at the beginning of balanced expression (sexp)."
+  (interactive)
+  (forward-sexp 1)
+  (transpose-sexps 1)
+  (forward-sexp -1))
+
 (defun insert-v4-uuids (num-uuids)
   "Generate a number of V4 UUIDs adhering to the V4 specification and insert them into the current buffer, one per line."
   (interactive "nHow many UUIDs to generate? ")
