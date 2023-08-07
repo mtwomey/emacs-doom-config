@@ -220,4 +220,5 @@
        org-download
        image-drawers
        mod-marginalia
+       mod-evil
        )

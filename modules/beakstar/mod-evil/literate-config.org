@@ -1,0 +1,12 @@
+* Disable
+
+[Following text is [[https://emacsbliss.com/2018-09-02-evil-paste-annoy.html][from here]].]
+One thing I often do is copy some text with y and select some text in visual mode followed by using p or P to replace it with what I have just copied.
+
+However what really annoys me is that every time after I press p or P , the content(ie. visual selection) being replaced is saved to the top of kill-ring which ruined my next paste operation with p or P since kill-ring has been changed.
+
+This fixes that.
+
+#+begin_src emacs-lisp
+(setq evil-kill-on-visual-paste nil)
+#+end_src
