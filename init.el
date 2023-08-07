@@ -219,4 +219,5 @@
        brew
        org-download
        image-drawers
+       mod-marginalia
        )
