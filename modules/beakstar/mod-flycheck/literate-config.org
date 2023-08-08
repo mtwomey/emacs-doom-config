@@ -1,0 +1,27 @@
+#+TITLE: mod-flycheck
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Workaround for: Error while checking syntax automatically: (error "Undefined error level: lsp-flycheck-info-unnecessary")
+
+I don't really know what's going on here. But this provides the needed error info and prevents the problem.
+
+#+begin_src emacs-lisp
+(flycheck-define-error-level
+  'lsp-flycheck-info-unnecessary
+  :severity -10
+  :compilation-level 0
+  :overlay-category 'flycheck-info-overlay
+  :margin-spec (flycheck-make-margin-spec flycheck-default-margin-str
+                                          'flycheck-fringe-info)
+  :fringe-bitmap (cons 'flycheck-fringe-bitmap-double-arrow
+                       'flycheck-fringe-bitmap-double-arrow-hi-res)
+  :fringe-face 'flycheck-fringe-info
+  :error-list-face 'flycheck-error-list-info)
+#+end_src

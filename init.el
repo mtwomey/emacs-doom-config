@@ -221,4 +221,5 @@
        image-drawers
        mod-marginalia
        mod-evil
+       mod-flycheck
        )
