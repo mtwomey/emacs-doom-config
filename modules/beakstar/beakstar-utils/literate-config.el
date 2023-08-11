@@ -157,4 +157,13 @@ Point must be at the beginning of balanced expression (sexp)."
                         (random (expt 16 4)) (random (expt 16 4)) (random (expt 16 4)))))
       (insert (concat uuid "\n")))))
 
+(defun switch-mode-and-jsdoc (f &rest r)
+  (let ((initial-mode major-mode))
+   (js-ts-mode)
+   (let ((return (apply f r))) ;; Save the return so we can return whatever
+     (funcall initial-mode)
+     return)))
+
+(advice-add 'jsdoc :around #'switch-mode-and-jsdoc)
+
 (provide 'beakstar-utils)

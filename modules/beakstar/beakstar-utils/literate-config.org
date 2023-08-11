@@ -220,6 +220,23 @@ I didn't do the math on exactly what's going on here bitwise myself. I'm nearly 
       (insert (concat uuid "\n")))))
 #+end_src
 
+
+* JSDocs
+
+Right now the only decent jsdoc package only works with in js-ts-mode (tree sitter). I prefer rjsx-mode for javascript editing. So I'll wrap the function to temporarily switch modes and do the docs.
+
+#+begin_src emacs-lisp
+(defun switch-mode-and-jsdoc (f &rest r)
+  (let ((initial-mode major-mode))
+   (js-ts-mode)
+   (let ((return (apply f r))) ;; Save the return so we can return whatever
+     (funcall initial-mode)
+     return)))
+
+(advice-add 'jsdoc :around #'switch-mode-and-jsdoc)
+
+#+end_src
+
 * Provide beakstar-utils
 
 #+begin_src emacs-lisp
