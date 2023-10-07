@@ -53,3 +53,4 @@
 (package! zprint-mode)
 (package! string-inflection)
 (package! jsdoc)
+(package! python-black)
