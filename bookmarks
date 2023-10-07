@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("ssh payments"
+(("cognomen"
+ (filename . "/ssh:cognomen|sudo:cognomen:/etc/bind/")
+ (front-context-string . "cognomen\n dr")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25886 53331 338847 0))
+("ssh payments"
  (filename . "/ssh:payments:/var/www/html/live/crons/")
  (front-context-string . "hyperwallet\n  dr")
  (rear-context-string . "31 Feb  3 21:30 ")
