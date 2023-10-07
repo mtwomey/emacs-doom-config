@@ -222,4 +222,5 @@
        mod-marginalia
        mod-evil
        mod-flycheck
+       mod-ox-hugo
        )

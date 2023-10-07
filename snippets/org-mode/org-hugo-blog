@@ -1,0 +1,13 @@
+# key: %org-hugo-blog
+# name: org-hugo-blog
+# --
+#+TITLE: ${1:title}
+#+AUTHOR: Matthew Twomey
+#+DATE: <`(format-time-string "%Y-%m-%d %a %H:%M")`>
+:properties:
+#+HUGO_TAGS: vim emacs tooling
+#+HUGO_CUSTOM_FRONT_MATTER: :thumbnail /ox-hugo/20231001-161017_screenshot.png
+#+HUGO_CUSTOM_FRONT_MATTER: :toc false
+:end:
+
+$0
