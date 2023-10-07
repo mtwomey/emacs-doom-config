@@ -28,8 +28,8 @@
   (setq cider-jack-in-default 'babashka)
 
   (map! :map clojure-mode-map
-      :desc "open repl"
-      :leader "m o"#'+clojure/open-repl)
+        :desc "open repl"
+        :leader "m o"#'+clojure/open-repl)
 
   (defun clojure-jar ()
     (interactive)
