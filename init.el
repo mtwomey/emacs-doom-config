@@ -222,5 +222,6 @@
        mod-marginalia
        mod-evil
        mod-flycheck
+       tts-editor
        mod-ox-hugo
        )
