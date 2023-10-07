@@ -1,6 +1,10 @@
 (map! :map magit-mode-map
-      :desc "magit log all"
-      :leader "g l"#'magit-log-all)
+      :desc "Magit log all"
+      :leader "g l" #'magit-log-all
+
+      :desc "Magit file untrack"
+      :leader "g u" #'magit-file-untrack)
+
 (setq magit-repository-directories '(("/Users/mtwomey/Git_Repos" . 1)))
 
 ;; (after! magit
