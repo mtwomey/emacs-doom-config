@@ -1,0 +1,21 @@
+#+TITLE: Workarounds and Issues
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Issues fixed in other places
+
+** While editing Clojure, flycheck error gets in the way in the mini buffer :clojure:flycheck:
+
+The error is:
+
+=error "Undefined error level: lsp-flycheck-info-unnecessary"=
+
+Fixed [[file:modules/beakstar/mod-flycheck/literate-config.org::Workaround for: Error while checking syntax automatically: (error "Undefined error level: lsp-flycheck-info-unnecessary")][hacky workaround here]].
+
+** This is something else
