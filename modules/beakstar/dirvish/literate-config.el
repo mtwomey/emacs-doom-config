@@ -21,6 +21,14 @@
     (dirvish-quit)
     (+dired/quit-all)))
 
+(defun delete-dirvish-cache-directory ()
+   "Delete the dirvish cache directory."
+   (interactive)
+   (if (file-directory-p dirvish-cache-dir)
+     (progn (delete-directory dirvish-cache-dir t)
+            (message "Deleted dirvish cache directory: %s" dirvish-cache-dir))
+     (message "Dirvish cache directory not found: %s" dirvish-cache-dir)))
+
 ;; (file-directory-p file) is it a directory
 
 ;; (advice-add #'dired-find-file :after
