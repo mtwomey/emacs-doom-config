@@ -1,0 +1,18 @@
+#+TITLE: epa (gpg / pgp) tweaks
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Workaround for hanging issue
+
+It hangs for me when I try to /encrypt/ this seems to fix it.
+
+#+begin_src emacs-lisp
+(after! 'epa
+  (fset 'epg-wait-for-status 'ignore))
+#+end_src

@@ -2,9 +2,16 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("cognomen"
- (filename . "/ssh:cognomen|sudo:cognomen:/etc/bind/")
+(
+("cognomen"
+ (filename . "/ssh:mtwomey@cognomen|sudo:cognomen:/etc/bind/")
  (front-context-string . "cognomen\n dr")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25886 53331 338847 0))
+("omv"
+ (filename . "/ssh:mtwomey@omv|sudo:omv:/export/")
+ (front-context-string . "omv\n dr")
  (rear-context-string)
  (position . 1)
  (last-modified 25886 53331 338847 0))

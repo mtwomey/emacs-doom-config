@@ -16,6 +16,17 @@
  (dirvish-quick-access nil)
  (dirvish-quicksort nil)
  (dirvish-subtree-menu nil)
+ (dirvish-yank-menu nil)
+ (jet-menu
+  ("--from=edn" "--to=edn")
+  ("--from=yaml" "--to=json")
+  ("--from=json" "--to=json")
+  ("--from=json" "--to=json" "--no-pretty")
+  ("--from=edn" "--to=json")
+  ("--from=json" "--to=edn")
+  ("--from=json" "--to=edn" "--keywordize"))
+ (jet-menu--from "edn" "yaml" "json")
+ (jet-menu--to "edn" "json")
  (magit-blame
   ("-w"))
  (magit-branch nil)
@@ -35,11 +46,13 @@
   ("--no-ff")
   nil)
  (magit-pull nil)
- (magit-push nil)
+ (magit-push nil
+             ("--force"))
  (magit-rebase
   ("--autostash")
   nil)
  (magit-reset nil)
  (magit-revert
   ("--edit"))
- (magit-stash nil))
+ (magit-stash nil)
+ (magit-tag nil))
