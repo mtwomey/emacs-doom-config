@@ -215,7 +215,8 @@
        prettier-js
        term-toggle
        mod-org-mode
-       evil-cleverparens
+       ;; evil-cleverparens
+       mod-evil-cleverparens
        brew
        org-download
        image-drawers

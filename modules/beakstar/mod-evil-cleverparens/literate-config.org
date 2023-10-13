@@ -1,0 +1,44 @@
+#+TITLE: Parens Related Config
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Enable cleverparen in modes
+
+#+begin_src emacs-lisp
+(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+(add-hook 'cider-repl-mode-hook #'evil-cleverparens-mode)
+(add-hook 'org-mode-hook #'evil-cleverparens-mode)
+(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+#+end_src
+
+* Workaround for backspacing over parens
+
+There seems to be an issue specifically related to backspacing over parens. I opened an issue in cleverparens, but the author directed me to smartparens. I'm not completely clear where the issue could properly be addressed, but here's a workaround for now.
+
+#+begin_src emacs-lisp
+(evil-define-operator evil-cp-delete-char-or-splice-backwards-or-join
+   (_count)
+   (interactive "p")
+   (if (bolp)
+       (call-interactively #'evil-delete-backward-char-and-join)
+     (call-interactively #'evil-cp-delete-char-or-splice-backwards)))
+
+(after! clojure-mode
+        (map! :map clojure-mode-map
+              :i "<backspace>" #'evil-cp-delete-char-or-splice-backwards-or-join)
+        (map! :map cider-repl-mode-map
+              :i "<backspace>" #'evil-cp-delete-char-or-splice-backwards-or-join))
+
+(after! org
+        (map! :map org-mode-map
+              :i "<backspace>" #'evil-cp-delete-char-or-splice-backwards-or-join))
+
+(map! :map emacs-lisp-mode-map
+      :i "<backspace>" #'evil-cp-delete-char-or-splice-backwards-or-join)
+#+end_src

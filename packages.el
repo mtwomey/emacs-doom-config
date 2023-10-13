@@ -55,3 +55,4 @@
 (package! jsdoc)
 (package! python-black)
 (package! ox-hugo)
+(package! evil-cleverparens)
