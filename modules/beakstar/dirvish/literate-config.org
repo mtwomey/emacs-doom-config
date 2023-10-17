@@ -27,6 +27,15 @@
 (dirvish-override-dired-mode)
 #+end_src
 
+* Enable PDF Tools
+
+This isn't always enabled when Dirvish / Dired starts, this makes sure it is.
+
+#+begin_src emacs-lisp
+(after! dirvish
+  (pdf-tools-install))
+#+end_src
+
 * Quick Access Entries
 
 #+begin_src emacs-lisp

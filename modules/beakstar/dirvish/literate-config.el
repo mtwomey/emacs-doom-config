@@ -13,6 +13,9 @@
 ;; Required
 (dirvish-override-dired-mode)
 
+(after! dirvish
+  (pdf-tools-install))
+
 (setq dirvish-quick-access-entries '(("h" "~/" "Home")
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")
