@@ -75,12 +75,12 @@
       :nvi "C-h" #'dired-up-directory
       :desc "dired up directory"
       :nvi "h" #'dired-up-directory
-      :desc "dired previous line"
-      :nvi "C-k" #'dired-previous-line
+      :desc "Dirvish previous group"
+      :nvi "C-k" #'dirvish-emerge-previous-group
       :desc "dired previous line"
       :nvi "k" #'dired-previous-line
-      :desc "dired next line"
-      :nvi "C-j" #'dired-next-line
+      :desc "Dirvish next group"
+      :nvi "C-j" #'dirvish-emerge-next-group
       :desc "dired next line"
       :nvi "j" #'dired-next-line
       :desc "Dirvish Dispatch"
