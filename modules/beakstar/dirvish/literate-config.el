@@ -20,7 +20,7 @@
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")
                                      ("t" "/tmp" "tmp")
-                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames")))
+                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")))
 
 (setq dirvish-emerge-groups '(("Recent files" (predicate . recent-files-2h))
   ("Documents" (extensions "pdf" "tex" "bib" "epub" "txt" "afpub"))

@@ -43,7 +43,7 @@ This isn't always enabled when Dirvish / Dired starts, this makes sure it is.
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")
                                      ("t" "/tmp" "tmp")
-                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames")))
+                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")))
 #+end_src
 
 * Set Dirvish Emerge settings (e.g. the "grouping" functionality)
