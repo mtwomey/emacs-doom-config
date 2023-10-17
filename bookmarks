@@ -3,6 +3,18 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (
+("core"
+ (filename . "/sshx:mtwomey@core:~")
+ (front-context-string . "core\n dr")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25886 53331 338847 0))
+("core (sudo)"
+ (filename . "/sshx:mtwomey@core|sudo:core:~")
+ (front-context-string . "core\n dr")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 25886 53331 338847 0))
 ("cognomen"
  (filename . "/ssh:mtwomey@cognomen|sudo:cognomen:/etc/bind/")
  (front-context-string . "cognomen\n dr")
