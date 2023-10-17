@@ -7,13 +7,24 @@
 ;; Permissions problems when trying to use the mac trash based delete
 (setq delete-by-moving-to-trash nil)
 
+;; Enable emerge mode (the "grouping" functionality)
+(add-hook 'dirvish-setup-hook #'dirvish-emerge-mode)
+
 ;; Required
 (dirvish-override-dired-mode)
 
 (setq dirvish-quick-access-entries '(("h" "~/" "Home")
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")
-                                     ("t" "/tmp" "tmp")))
+                                     ("t" "/tmp" "tmp")
+                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames")))
+
+(setq dirvish-emerge-groups '(("Recent files" (predicate . recent-files-2h))
+  ("Documents" (extensions "pdf" "tex" "bib" "epub" "txt" "afpub"))
+  ("Video" (extensions "mp4" "mkv" "webm"))
+  ("Pictures" (extensions "jpg" "png" "svg" "gif"))
+  ("Audio" (extensions "mp3" "flac" "wav" "ape" "aac"))
+  ("Archives" (extensions "gz" "rar" "zip" "tar" "7z"))))
 
 (defun kill-dirvish ()
   (interactive)
@@ -77,4 +88,10 @@
       :desc "Kill Dirvish"
       :nvi "q" #'kill-dirvish
       :desc "Kill Dirvish"
-      :nvi "<escape>" #'kill-dirvish)
+      :nvi "<escape>" #'kill-dirvish
+      :desc "Dirvish Toggle emerge Group"
+      :nvi "<tab>" (general-key "C-I"))
+
+;; (general-auto-unbind-keys)
+
+;; (general-define-key :keymaps 'dirvish-mode-map :states '(normal visual insert) "<tab>" (general-key "C-I"))
