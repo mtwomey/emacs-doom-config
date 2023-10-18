@@ -30,10 +30,6 @@ Due to the order of loading, the Doom setting for =dired-omit-files= knock out c
 
 #+begin_src emacs-lisp
 ;; Show all files except . and ..
-;; (add-hook-run-once 'dirvish-setup-hook
-;;                      (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
-;;                      (revert-buffer))
-
 (add-hook-run-once 'dirvish-setup-hook
                    (lambda ()
                      (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")

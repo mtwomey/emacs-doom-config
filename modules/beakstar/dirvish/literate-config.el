@@ -11,10 +11,6 @@
 (dirvish-override-dired-mode)
 
 ;; Show all files except . and ..
-;; (add-hook-run-once 'dirvish-setup-hook
-;;                      (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
-;;                      (revert-buffer))
-
 (add-hook-run-once 'dirvish-setup-hook
                    (lambda ()
                      (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")

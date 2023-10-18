@@ -8,10 +8,11 @@
      ,@body))
 
 (defmacro add-hook-run-once (hook func)
-  "This takes a hook and a body. It defines a function and adds it to the hook
-using add-hook. The function will run the body and then remove itself from the
-hook with remove-hook. Finally the funciton will undefine itself with fmakunbound.
-This has the effect of a hook function that will run only one time"
+  "This takes a hook and a function. It defines a new function
+that first calls the supplied function and then removes itself
+from the hook with remove-hook and undefines itself. This new
+function will be added to the hook using add-hook. This has the
+effect of a hook function that will run only one time"
   (let ((unique-func-name (gensym "f")))
        `(progn (defun ,unique-func-name ()
                       (funcall ,func)
