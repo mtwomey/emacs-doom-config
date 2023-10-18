@@ -1,9 +1,6 @@
 (setq dirvish-attributes '(all-the-icons subtree-state file-size))
 (setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g")
 
-;; Show all files except . and ..
-(setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
-
 ;; Permissions problems when trying to use the mac trash based delete
 (setq delete-by-moving-to-trash nil)
 
@@ -12,6 +9,16 @@
 
 ;; Required
 (dirvish-override-dired-mode)
+
+;; Show all files except . and ..
+;; (add-hook-run-once 'dirvish-setup-hook
+;;                      (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
+;;                      (revert-buffer))
+
+(add-hook-run-once 'dirvish-setup-hook
+                   (lambda ()
+                     (setq dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'")
+                     (revert-buffer)))
 
 (after! dirvish
   (pdf-tools-install))
