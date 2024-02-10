@@ -1,0 +1,21 @@
+#+TITLE: DBT Things
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+* Add a command for the DBT specific SQL formatter "sqlfmt"
+
+Note =sqlfmt= will need to be in the path
+
+#+begin_src emacs-lisp
+(defun sqlfmt-format-buffer ()
+  "Format the entire buffer using sqlfmt."
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (point-min) (point-max) "sqlfmt - 2>/dev/null" t t)))
+#+end_src

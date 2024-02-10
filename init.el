@@ -226,4 +226,5 @@
        tts-editor
        mod-ox-hugo
        mod-epa
+       dbt
        )
