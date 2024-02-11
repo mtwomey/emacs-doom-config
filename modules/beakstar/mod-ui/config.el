@@ -25,6 +25,10 @@
                             (width . (text-pixels . 1445)) ;; I don't know why but it's adding 20 to this 1420, resulting in 1440 which is what I want..
                             (height . (text-pixels . 909))))
 
+;; Make sure emacs is focused when it restarts
+;; (sometime when issuing a restart command, it's not focused after it comes back up)
+(select-frame-set-input-focus (selected-frame))
+
 ;; Set color theme
 ;; (defun color-theme-beakstar-dusk ()
 ;;   (interactive)
