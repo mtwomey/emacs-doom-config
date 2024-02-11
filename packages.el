@@ -56,3 +56,4 @@
 (package! python-black)
 (package! ox-hugo)
 (package! evil-cleverparens)
+(package! vscode-icon)

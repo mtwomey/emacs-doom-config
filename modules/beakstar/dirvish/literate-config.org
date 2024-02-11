@@ -11,7 +11,9 @@
 * General settings
 
 #+begin_src emacs-lisp
-(setq dirvish-attributes '(all-the-icons subtree-state file-size))
+;; (setq dirvish-attributes '(all-the-icons subtree-state file-size))
+(setq dirvish-attributes '(vscode-icon subtree-state file-size))
+(setq dirvish-vscode-icon-size 24) ;; Make the icons a little smaller
 (setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g")
 
 ;; Permissions problems when trying to use the mac trash based delete
@@ -59,7 +61,9 @@ This isn't always enabled when Dirvish / Dired starts, this makes sure it is.
 * Set Dirvish Emerge settings (e.g. the "grouping" functionality)
 
 #+begin_src emacs-lisp
-(setq dirvish-emerge-groups '(("Recent files" (predicate . recent-files-2h))
+(setq dirvish-emerge-groups '(
+  ("Directories" (predicate . directories))
+  ("Recent files" (predicate . recent-files-2h))
   ("Documents" (extensions "pdf" "tex" "bib" "epub" "txt" "afpub"))
   ("Video" (extensions "mp4" "mkv" "webm"))
   ("Pictures" (extensions "jpg" "png" "svg" "gif"))
@@ -98,6 +102,7 @@ This checks if =find-file= is being called on a directory or a file. It "loosely
                          (apply f r)
                          (when is-file (+dired/quit-all)))))
 #+end_src
+
 
 * Key Maps
 

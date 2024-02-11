@@ -1,4 +1,6 @@
-(setq dirvish-attributes '(all-the-icons subtree-state file-size))
+;; (setq dirvish-attributes '(all-the-icons subtree-state file-size))
+(setq dirvish-attributes '(vscode-icon subtree-state file-size))
+(setq dirvish-vscode-icon-size 24) ;; Make the icons a little smaller
 (setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g")
 
 ;; Permissions problems when trying to use the mac trash based delete
@@ -25,7 +27,9 @@
                                      ("t" "/tmp" "tmp")
                                      ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")))
 
-(setq dirvish-emerge-groups '(("Recent files" (predicate . recent-files-2h))
+(setq dirvish-emerge-groups '(
+  ("Directories" (predicate . directories))
+  ("Recent files" (predicate . recent-files-2h))
   ("Documents" (extensions "pdf" "tex" "bib" "epub" "txt" "afpub"))
   ("Video" (extensions "mp4" "mkv" "webm"))
   ("Pictures" (extensions "jpg" "png" "svg" "gif"))
@@ -46,17 +50,13 @@
             (message "Deleted dirvish cache directory: %s" dirvish-cache-dir))
      (message "Dirvish cache directory not found: %s" dirvish-cache-dir)))
 
-;; (file-directory-p file) is it a directory
-
-;; (advice-add #'dired-find-file :after
-;;             (lambda (&rest r)
-;;               ;; (message "I am here")
-;;               (when (not (file-directory-p (dired-file-name-at-point)))
-;;                   (kill-dirvish))
-;;               ;; (message (dired-file-name-at-point))
-;;               ;; (message r)
-;;               ;; (kill-dirvish)
-;;               ))
+(advice-add #'dired-find-file
+            :around
+            (lambda (f &rest r)
+                    (let ((is-file (not (file-directory-p
+                                          (dired-get-file-for-visit)))))
+                         (apply f r)
+                         (when is-file (+dired/quit-all)))))
 
 (map! :desc "Open dirvish"
       :leader "." #'dirvish)
