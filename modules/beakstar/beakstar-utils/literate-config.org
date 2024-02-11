@@ -260,6 +260,38 @@ This is used in the switching buffers hydra and also mod-ivy to filter the buffe
         "Less important buffer names")
 #+end_src
 
+* Filter strings
+
+#+begin_src emacs-lisp
+(defun filter-strings-by-regex (strings regex-list)
+  "Filter out items in a list of strings based on a list of regex patterns."
+  (cl-remove-if (lambda (string)
+                        (seq-some (lambda (regex) (string-match-p regex string))
+                                  regex-list))
+                strings))
+#+end_src
+
+* Advice around next-buffer and previous-buffer to only switch to important buffers
+
+Note that buffers beginning with a space " " are also filtered out (these are system buffers).
+
+#+begin_src emacs-lisp
+(defun important-buffer-count ()
+       (length (filter-strings-by-regex
+                 (seq-filter (lambda (name) (not (string-prefix-p " " name)))
+                             (mapcar 'buffer-name (buffer-list)))
+                 less-important-buffer-names)))
+
+(advice-add #'next-buffer :around
+            (lambda (f &rest r)
+                    (when (> (important-buffer-count) 1) (apply f r))))
+
+(advice-add #'previous-buffer :around
+            (lambda (f &rest r)
+                    (when (> (important-buffer-count) 1) (apply f r))))
+#+end_src
+
+
 * Provide beakstar-utils
 
 #+begin_src emacs-lisp

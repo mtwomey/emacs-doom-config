@@ -12,7 +12,7 @@
 that first calls the supplied function and then removes itself
 from the hook with remove-hook and undefines itself. This new
 function will be added to the hook using add-hook. This has the
-effect of a hook function that will run only one time"
+effect of a hook function that will run only one time."
   (let ((unique-func-name (gensym "f")))
        `(progn (defun ,unique-func-name ()
                       (funcall ,func)
