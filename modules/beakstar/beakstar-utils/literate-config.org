@@ -237,6 +237,29 @@ Right now the only decent jsdoc package only works with in js-ts-mode (tree sitt
 
 #+end_src
 
+* Buffer names I care less about
+
+This is used in the switching buffers hydra and also mod-ivy to filter the buffer list.
+
+#+begin_src emacs-lisp
+(defvar less-important-buffer-names
+        '("*Async-native-compile-log*"
+          "*clojure-lsp*"
+          "*clojure-lsp::stderr*"
+          "*Compile-Log*"
+          "*copilot events*"
+          "*lsp-log*"
+          "*Messages*"
+          "*Native-compile-Log*"
+          "*new*"
+          "*Pp Eval Output*"
+          "*scratch*"
+          "*ts-ls*"
+          "*ts-ls::stderr*"
+          "*zprint-mode errors*")
+        "Less important buffer names")
+#+end_src
+
 * Provide beakstar-utils
 
 #+begin_src emacs-lisp

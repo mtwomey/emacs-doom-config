@@ -13,34 +13,18 @@
 I don't love workspaces and I also like to be able to see the buffers I care about easily while ignoring many of the utility / specifal buffers. This lets me do that easily and in a custom way.
 
 #+begin_src emacs-lisp
-(setq beakstar-ivy-switch-buffers-ignore-names
-    '("*new*"
-      "*scratch*"
-      "*Async-native-compile-log*"
-      "*Native-compile-Log*"
-      "*Compile-Log*"
-      "*lsp-log*"
-      "*ts-ls*"
-      "*ts-ls::stderr*"
-      "*clojure-lsp*"
-      "*clojure-lsp::stderr*"))
-
-(defun beakstar-ivy-ignore-buffer? (b)
-  (if (member b beakstar-ivy-switch-buffers-ignore-names)
-      0
-    nil))
-
 (setq beakstar-ivy-switch-buffers-ignore-regexes
-        '("\\`*Dirvish-"))
+      less-important-buffer-names)
 
 (defun beakstar-ivy-switch-buffer ()
   "Calls ivy-switch-buffer ignoring any buffers in beakstar-ivy-switch-buffers-ignore-names
 or that match a regex in beakstar-ivy-switch-buffers-ignore-regexes.
 Calling it with the universal argument will show all buffers."
   (interactive)
-  (if current-prefix-arg (ivy-switch-buffer)
-    (let ((ivy-ignore-buffers (append beakstar-ivy-switch-buffers-ignore-regexes
-                                      '(beakstar-ivy-ignore-buffer?))))
+  (if current-prefix-arg
+      (ivy-switch-buffer)
+    (let ((ivy-ignore-buffers (append
+                               beakstar-ivy-switch-buffers-ignore-regexes)))
       (ivy-switch-buffer))))
 #+end_src
 
