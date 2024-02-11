@@ -29,6 +29,9 @@ For example passing '(1 2 3) will return (3 1 2)."
   ("h" hydra-mode-cycle-previous-mode "Previous mode")
   ("<left>" hydra-mode-cycle-previous-mode "Previous mode"))
 
+;; Skip these buffers when usig prev/next buffer
+(setq switch-to-prev-buffer-skip-regexp less-important-buffer-names)
+
 (defhydra hydra-buffer-cycle ()
   "Switch buffers"
   ("l" next-buffer "Next buffer")
