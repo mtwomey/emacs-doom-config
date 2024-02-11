@@ -74,6 +74,26 @@ I debate whether this should go in my theme or if I want to control this separat
 #+end_src
 
 
+
+** Graphviz dot support
+
+This allows me to make graphviz images in org-mode files using a test block like this:
+
+##+BEGIN_SRC dot :file my_output_file.png :cmdline -Kdot -Tpng
+ digraph G {
+   my_start -> one_branc;
+   my_start -> another_branch;
+ }
+##+end_src
+
+
+
+#+begin_src emacs-lisp
+(org-babel-do-load-languages
+    org-babel-load-languages
+    '((dot . t)))
+#+end_src
+
 * Image Drawers
 * Previous / unused stuff
 

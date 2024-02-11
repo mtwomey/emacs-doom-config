@@ -32,3 +32,7 @@
                                    :width semi-condensed
                                    :foundry "nil"
                                    :family "Hack")))))
+
+(org-babel-do-load-languages
+    org-babel-load-languages
+    '((dot . t)))
