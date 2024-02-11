@@ -46,7 +46,15 @@
 
   (map! :map clojure-mode-map
         :desc "open repl"
-        :leader "m o"#'+clojure/open-repl)
+        :leader "m o"#'+clojure/open-repl))
+#+end_src
+
+* Babashka tweaks
+
+** Make sure .bb file open in clojure-mode
+
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.bb\\'" . clojure-mode))
 #+end_src
 
 * A hydra for building
@@ -111,5 +119,5 @@ _c_: clean
 
   (map! :after clojure-mode
         :map clojure-mode-map
-        :localleader :desc "deps" "D" #'hydra-clojure-deps/body))
+        :localleader :desc "deps" "D" #'hydra-clojure-deps/body)
 #+end_src

@@ -29,7 +29,9 @@
 
   (map! :map clojure-mode-map
         :desc "open repl"
-        :leader "m o"#'+clojure/open-repl)
+        :leader "m o"#'+clojure/open-repl))
+
+(add-to-list 'auto-mode-alist '("\\.bb\\'" . clojure-mode))
 
   (defun clojure-jar ()
     (interactive)
@@ -90,4 +92,4 @@ _c_: clean
 
   (map! :after clojure-mode
         :map clojure-mode-map
-        :localleader :desc "deps" "D" #'hydra-clojure-deps/body))
+        :localleader :desc "deps" "D" #'hydra-clojure-deps/body)
