@@ -1,0 +1,7 @@
+# name: +begin_src js-json
+# key: %json
+# --
+
+#+begin_src js-json
+$0
+#+end_src

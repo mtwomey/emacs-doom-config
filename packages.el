@@ -56,4 +56,6 @@
 (package! python-black)
 (package! ox-hugo)
 (package! evil-cleverparens)
+(package! ivy-clojuredocs)
+(package! logview)
 (package! vscode-icon)

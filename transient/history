@@ -1,32 +1,58 @@
 ((dirvish-dired-cheatsheet nil)
  (dirvish-dispatch nil)
+ (dirvish-emerge--menu nil
+                       (("Archives"
+                         (extensions "jar")
+                         nil nil)
+                        ("PDFs"
+                         (extensions "pdf")
+                         nil nil))
+                       (("Archives"
+                         (extensions "jar")
+                         nil nil))
+                       (("Anon-2"
+                         (extensions "org")
+                         nil nil))
+                       (("Anon-1"
+                         (extensions "el")
+                         nil nil)))
  (dirvish-file-info-menu nil)
  (dirvish-history-menu nil)
  (dirvish-ls-switches-menu
+  ("--group-directories-first")
+  ("--indicator-style=slash" "--group-directories-first")
+  ("--indicator-style=classify" "--group-directories-first")
+  ("--indicator-style=file-type" "--group-directories-first")
   ("--all" "--group-directories-first")
   ("--time-style=locale" "--group-directories-first")
   ("--time-style=locale" "--group-directories-first" "--human-readable")
   ("--all" "--time-style=locale" "--group-directories-first" "--no-group" "-g")
   ("--all" "--time-style=locale" "--group-directories-first")
-  ("--group-directories-first")
-  ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g")
-  ("--time-style=locale" "--group-directories-first" "--human-readable" "--size")
-  ("--time-style=locale" "--group-directories-first" "--human-readable" "-g" "--numeric-uid-gid")
-  ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g" "--numeric-uid-gid"))
+  ("--time-style=locale" "--group-directories-first" "--human-readable" "--no-group" "-g"))
  (dirvish-quick-access nil)
  (dirvish-quicksort nil)
  (dirvish-subtree-menu nil)
+ (dirvish-vc-menu nil)
  (dirvish-yank-menu nil)
+ (docker nil)
+ (docker-container-help nil)
+ (docker-container-ls
+  ("--all"))
+ (docker-container-pause nil)
+ (docker-container-shells nil)
+ (docker-network-help nil)
  (jet-menu
+  ("--from=json" "--to=edn" "--keywordize")
+  ("--from=json" "--to=edn")
   ("--from=edn" "--to=edn")
   ("--from=yaml" "--to=json")
   ("--from=json" "--to=json")
   ("--from=json" "--to=json" "--no-pretty")
-  ("--from=edn" "--to=json")
-  ("--from=json" "--to=edn")
-  ("--from=json" "--to=edn" "--keywordize"))
- (jet-menu--from "edn" "yaml" "json")
+  ("--from=edn" "--to=json"))
+ (jet-menu--from "json" "edn" "yaml")
  (jet-menu--to "edn" "json")
+ (magit-am
+  ("--3way"))
  (magit-blame
   ("-w"))
  (magit-branch nil)
@@ -44,13 +70,18 @@
   ("-n256" "--simplify-by-decoration" "--graph" "--color" "--decorate"))
  (magit-merge
   ("--no-ff")
+  ("--ff-only")
   nil)
  (magit-pull nil)
  (magit-push nil
+             ("--force-with-lease")
              ("--force"))
  (magit-rebase
   ("--autostash")
   nil)
+ (magit-remote
+  ("-f"))
+ (magit-remote.<remote>.*url "x" "git@github.com:mtwomey/hm-01.git")
  (magit-reset nil)
  (magit-revert
   ("--edit"))

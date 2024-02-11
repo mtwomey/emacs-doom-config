@@ -2,8 +2,7 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(
-("core"
+(("core"
  (filename . "/sshx:mtwomey@core:~")
  (front-context-string . "core\n dr")
  (rear-context-string)
@@ -33,4 +32,10 @@
  (rear-context-string . "31 Feb  3 21:30 ")
  (position . 275)
  (last-modified 25689 3391 749852 0))
+("airbyte-dev"
+ (filename . "/ssh:airbyte-dev:~/")
+ (front-context-string . "cognomen\n dr")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26036 51729 933273 0))
 )
