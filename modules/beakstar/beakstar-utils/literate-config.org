@@ -253,6 +253,7 @@ This is used in the switching buffers hydra and also mod-ivy to filter the buffe
           "*Native-compile-Log*"
           "*new*"
           "*Pp Eval Output*"
+          "*pyright.*"
           "*scratch*"
           "*ts-ls*"
           "*ts-ls::stderr*"

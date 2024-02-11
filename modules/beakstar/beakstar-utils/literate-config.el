@@ -166,4 +166,43 @@ Point must be at the beginning of balanced expression (sexp)."
 
 (advice-add 'jsdoc :around #'switch-mode-and-jsdoc)
 
+(defvar less-important-buffer-names
+        '("*Async-native-compile-log*"
+          "*clojure-lsp*"
+          "*clojure-lsp::stderr*"
+          "*Compile-Log*"
+          "*copilot events*"
+          "*lsp-log*"
+          "*Messages*"
+          "*Native-compile-Log*"
+          "*new*"
+          "*Pp Eval Output*"
+          "*pyright.*"
+          "*scratch*"
+          "*ts-ls*"
+          "*ts-ls::stderr*"
+          "*zprint-mode errors*")
+        "Less important buffer names")
+
+(defun filter-strings-by-regex (strings regex-list)
+  "Filter out items in a list of strings based on a list of regex patterns."
+  (cl-remove-if (lambda (string)
+                        (seq-some (lambda (regex) (string-match-p regex string))
+                                  regex-list))
+                strings))
+
+(defun important-buffer-count ()
+       (length (filter-strings-by-regex
+                 (seq-filter (lambda (name) (not (string-prefix-p " " name)))
+                             (mapcar 'buffer-name (buffer-list)))
+                 less-important-buffer-names)))
+
+(advice-add #'next-buffer :around
+            (lambda (f &rest r)
+                    (when (> (important-buffer-count) 1) (apply f r))))
+
+(advice-add #'previous-buffer :around
+            (lambda (f &rest r)
+                    (when (> (important-buffer-count) 1) (apply f r))))
+
 (provide 'beakstar-utils)
