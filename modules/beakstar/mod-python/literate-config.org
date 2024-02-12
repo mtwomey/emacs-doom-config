@@ -1,0 +1,60 @@
+#+TITLE: Python configs
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+
+* REPL things
+
+Make it so when I switch to the repl it always going into insert mode at the end This is because I hate that it puts the cursor on the errors if there are any and I have to hit a bunch of keys to get back to the regular mode Also map some keys.
+
+
+#+begin_src emacs-lisp
+;; (after! python
+;;         (map! :map
+;;               inferior-python-mode-map
+;;               :desc "previous command" :i "<up>" #'comint-previous-input
+;;               :desc "previous command" :i "C-k" #'comint-previous-input
+;;               :desc "next command" :i "<down>" #'comint-next-input
+;;               :desc "next command" :i "C-j" #'comint-next-input)
+;;         (add-hook
+;;           'inferior-python-mode-hook
+;;           '(lambda ()
+;;                    (add-hook
+;;                      'buffer-list-update-hook
+;;                      '(lambda ()
+;;                               (with-current-buffer
+;;                                 (get-buffer (car (buffer-list)))
+;;                                 (if (string= major-mode "inferior-python-mode")
+;;                                   (progn (evil-insert-state)
+;;                                          (goto-char (point-max)))))))))
+;;         (add-hook 'python-mode-hook
+;;                   '(lambda ()
+;;                            (f-traverse-upwards
+;;                              (lambda (path)
+;;                                      (let ((venv-path (f-expand "venv" path)))
+;;                                           (when (f-exists? venv-path)
+;;                                             (pyvenv-activate venv-path))))))))
+#+end_src
+
+* Debugging
+
+This configures a profile for DAP debugging. There are two possibilities here "ptvsd" (which is the default) and "debugpy". We need to use debugpy as ptvsd is depreciated as of 8/10/2022 according to the dap-mode website. It also didn't work, which is what led me to debugpy.
+
+#+begin_src emacs-lisp
+(after! dap-mode
+        (dap-register-debug-template "Python :: Run file (buffer)"
+                                     (list :type "python"
+                                           :args ""
+                                           :cwd nil
+                                           :module nil
+                                           :program nil
+                                           :request "launch"
+                                           :name "Python :: Run file (buffer)"
+                                           :debugger "debugpy")))
+#+end_src
