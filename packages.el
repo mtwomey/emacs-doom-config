@@ -59,3 +59,4 @@
 (package! ivy-clojuredocs)
 (package! logview)
 (package! vscode-icon)
+;;(package! csv-mode)

@@ -173,17 +173,19 @@ Point must be at the beginning of balanced expression (sexp)."
           "*Compile-Log*"
           "*copilot events*"
           "*dap-ui.*"
-          "*lsp-log*"
+          "*lsp-"
+          "*magit-process:"
           "*Messages*"
           "*Native-compile-Log*"
-          "*new*"
+          ;; "*new*"
           "*Pp Eval Output*"
           "*pyright.*"
           "*Python ::"
           "*scratch*"
           "*ts-ls*"
           "*ts-ls::stderr*"
-          "*zprint-mode errors*")
+          "*zprint-mode errors*"
+          "*semgrep-")
         "Less important buffer names")
 
 (defun filter-strings-by-regex (strings regex-list)
@@ -206,5 +208,24 @@ Point must be at the beginning of balanced expression (sexp)."
 (advice-add #'previous-buffer :around
             (lambda (f &rest r)
                     (when (> (important-buffer-count) 1) (apply f r))))
+
+(defun visidata-on-file ()
+  "Run visidata on the file currently highlighted in dired or the file currently visited in the buffer."
+  (interactive)
+  (let*
+    ((filename (if (eq major-mode 'dired-mode)
+                 (dired-get-file-for-visit)
+                 (buffer-file-name)))
+      (file (if (tramp-tramp-file-p filename)
+              (tramp-handle-file-local-copy filename)
+              filename)))
+    (if file
+      (let ((command
+              (format
+                "open -a /Users/mtwomey/scripts/visidata-terminal.app %s"
+                (shell-quote-argument file))))
+           (message command)
+           (save-excursion (set-buffer "*scratch*") (shell-command command)))
+      (message "No file selected"))))
 
 (provide 'beakstar-utils)

@@ -4,12 +4,15 @@
 (add-hook 'python-mode-hook #'evil-cleverparens-mode)
 (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
 
-(evil-define-operator evil-cp-delete-char-or-splice-backwards-or-join
-   (_count)
-   (interactive "p")
-   (if (bolp)
-       (call-interactively #'evil-delete-backward-char-and-join)
-     (call-interactively #'evil-cp-delete-char-or-splice-backwards)))
+(evil-define-operator evil-cp-delete-char-or-splice-backwards-or-join (_count)
+  (interactive "p")
+  (let ((unnamed-register (evil-get-register ?\")))
+       (unwind-protect (progn (if (bolp)
+                                (call-interactively
+                                  #'evil-delete-backward-char-and-join)
+                                (call-interactively
+                                  #'evil-cp-delete-char-or-splice-backwards)))
+                       (evil-set-register ?\" unnamed-register))))
 
 (after! clojure-mode
         (map! :map clojure-mode-map

@@ -62,20 +62,24 @@
  (magit-commit nil)
  (magit-diff
   ("--no-ext-diff" "--stat")
+  ("--ignore-space-change" "--ignore-all-space" "--no-ext-diff")
+  ("--ignore-space-change" "--no-ext-diff")
+  (("--" "ea_data_lake_dbt/models/utils/provided_by_eclipse/trial_balances_base.sql"))
   (("--" "api/reviews.js")))
  (magit-dispatch nil)
  (magit-fetch nil)
  (magit-log
   ("-n256" "--graph" "--color" "--decorate")
+  (("--" "ea_data_lake_dbt/models/utils/provided_by_eclipse/trial_balances_base.sql"))
   ("-n256" "--simplify-by-decoration" "--graph" "--color" "--decorate"))
  (magit-merge
   ("--no-ff")
-  ("--ff-only")
-  nil)
+  nil
+  ("--ff-only"))
  (magit-pull nil)
  (magit-push nil
-             ("--force-with-lease")
-             ("--force"))
+             ("--force")
+             ("--force-with-lease"))
  (magit-rebase
   ("--autostash")
   nil)
@@ -86,4 +90,10 @@
  (magit-revert
   ("--edit"))
  (magit-stash nil)
- (magit-tag nil))
+ (magit-stash-push
+  (("--" "dbt/macros/archtics/build_ticket_state.sql"))
+  (("--" "dbt/macros/archtics/build_ticket_enriched.sql")))
+ (magit-status-jump nil)
+ (magit-tag nil)
+ (magit-worktree nil)
+ (magit:-- "dbt/macros/archtics/build_ticket_state.sql" "" "dbt/macros/archtics/build_ticket_enriched.sql"))

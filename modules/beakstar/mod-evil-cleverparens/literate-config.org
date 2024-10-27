@@ -22,13 +22,20 @@
 
 There seems to be an issue specifically related to backspacing over parens. I opened an issue in cleverparens, but the author directed me to smartparens. I'm not completely clear where the issue could properly be addressed, but here's a workaround for now.
 
+20240913:
+
+Added code to save the evil unnamed register so it's not updated with every backspace - e.g. every time I'd backspace I'd lose what was on the clipboard.
+
 #+begin_src emacs-lisp
-(evil-define-operator evil-cp-delete-char-or-splice-backwards-or-join
-   (_count)
-   (interactive "p")
-   (if (bolp)
-       (call-interactively #'evil-delete-backward-char-and-join)
-     (call-interactively #'evil-cp-delete-char-or-splice-backwards)))
+(evil-define-operator evil-cp-delete-char-or-splice-backwards-or-join (_count)
+  (interactive "p")
+  (let ((unnamed-register (evil-get-register ?\")))
+       (unwind-protect (progn (if (bolp)
+                                (call-interactively
+                                  #'evil-delete-backward-char-and-join)
+                                (call-interactively
+                                  #'evil-cp-delete-char-or-splice-backwards)))
+                       (evil-set-register ?\" unnamed-register))))
 
 (after! clojure-mode
         (map! :map clojure-mode-map

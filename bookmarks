@@ -38,4 +38,24 @@
  (rear-context-string)
  (position . 1)
  (last-modified 26036 51729 933273 0))
+("archtics1 reliable penguin"
+ (filename . "/ssh:archtics1:~/")
+ (no-context t)
+ (position . 1)
+ (last-modified 26036 51729 933273 0))
+("archtics1-sftp"
+ (filename . "/sshfs:archtics1-sftp:/")
+ (no-context t)
+ (position . 1)
+ (last-modified 26036 51729 933273 0))
+("bd-datamover"
+ (filename . "/ssh:bd-datamover:~/")
+ (no-context t)
+ (position . 1)
+ (last-modified 26036 51729 933273 0))
+("vive-fsuipc"
+ (filename . "/smb:mtwomey@192.168.192.249:/")
+ (no-context t)
+ (position . 1)
+ (last-modified 26299 45584 905573 0))
 )

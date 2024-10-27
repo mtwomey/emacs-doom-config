@@ -45,3 +45,28 @@ effect of a hook function that will run only one time."
                       (fmakunbound ',unique-func-name))
                (add-hook ,hook ',unique-func-name))))
 #+end_src
+
+
+* Do a body of things without affecting the kill-ring
+
+#+begin_src emacs-lisp
+(defmacro without-kill-ring (&rest body)
+  "Execute BODY while temporarily saving and restoring the kill ring.
+The kill ring is saved before BODY is executed, and restored after."
+  (let ((orig-kill-ring (gensym "orig-kill-ring")))
+    `(let ((,orig-kill-ring kill-ring))
+       (unwind-protect
+           (progn
+             ;; Execute the body
+             ,@body)
+         ;; Restore the kill ring
+         (setq kill-ring ,orig-kill-ring)))))
+#+end_src
+
+* Startup
+
+** Set the scratch buffer to emacs-lisp-mode
+
+#+begin_src emacs-lisp
+(setq initial-major-mode 'emacs-lisp-mode)
+#+end_src

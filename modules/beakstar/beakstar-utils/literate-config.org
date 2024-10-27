@@ -249,17 +249,19 @@ This is used in the switching buffers hydra and also mod-ivy to filter the buffe
           "*Compile-Log*"
           "*copilot events*"
           "*dap-ui.*"
-          "*lsp-log*"
+          "*lsp-"
+          "*magit-process:"
           "*Messages*"
           "*Native-compile-Log*"
-          "*new*"
+          ;; "*new*"
           "*Pp Eval Output*"
           "*pyright.*"
           "*Python ::"
           "*scratch*"
           "*ts-ls*"
           "*ts-ls::stderr*"
-          "*zprint-mode errors*")
+          "*zprint-mode errors*"
+          "*semgrep-")
         "Less important buffer names")
 #+end_src
 
@@ -292,6 +294,31 @@ Note that buffers beginning with a space " " are also filtered out (these are sy
 (advice-add #'previous-buffer :around
             (lambda (f &rest r)
                     (when (> (important-buffer-count) 1) (apply f r))))
+#+end_src
+
+* Visidata command
+
+This was tricky to get working because opening a terminal and then running a command in that terminal requires Apple events controlling other applications. This relies on an "app" created with the AppleScript tool. The app then requested the needed access, which I approved. I couldn't get the permissions to work with just a script and the =osascript= command.
+
+#+begin_src emacs-lisp
+(defun visidata-on-file ()
+  "Run visidata on the file currently highlighted in dired or the file currently visited in the buffer."
+  (interactive)
+  (let*
+    ((filename (if (eq major-mode 'dired-mode)
+                 (dired-get-file-for-visit)
+                 (buffer-file-name)))
+      (file (if (tramp-tramp-file-p filename)
+              (tramp-handle-file-local-copy filename)
+              filename)))
+    (if file
+      (let ((command
+              (format
+                "open -a /Users/mtwomey/scripts/visidata-terminal.app %s"
+                (shell-quote-argument file))))
+           (message command)
+           (save-excursion (set-buffer "*scratch*") (shell-command command)))
+      (message "No file selected"))))
 #+end_src
 
 

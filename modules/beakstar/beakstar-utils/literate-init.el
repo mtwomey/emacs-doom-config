@@ -19,3 +19,17 @@ effect of a hook function that will run only one time."
                       (remove-hook ,hook ',unique-func-name)
                       (fmakunbound ',unique-func-name))
                (add-hook ,hook ',unique-func-name))))
+
+(defmacro without-kill-ring (&rest body)
+  "Execute BODY while temporarily saving and restoring the kill ring.
+The kill ring is saved before BODY is executed, and restored after."
+  (let ((orig-kill-ring (gensym "orig-kill-ring")))
+    `(let ((,orig-kill-ring kill-ring))
+       (unwind-protect
+           (progn
+             ;; Execute the body
+             ,@body)
+         ;; Restore the kill ring
+         (setq kill-ring ,orig-kill-ring)))))
+
+(setq initial-major-mode 'emacs-lisp-mode)

@@ -226,7 +226,7 @@
        tts-editor
        mod-ox-hugo
        mod-epa
-       copilot
+       ;;copilot
        dbt
        mod-python
        )

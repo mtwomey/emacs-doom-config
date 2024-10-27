@@ -1,7 +1,10 @@
 ;; (setq dirvish-attributes '(all-the-icons subtree-state file-size))
-(setq dirvish-attributes '(vscode-icon subtree-state file-size))
-(setq dirvish-vscode-icon-size 24) ;; Make the icons a little smaller
-(setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g")
+
+(after!
+  dirvish
+  (setq dirvish-attributes '(vscode-icon subtree-state file-size))
+  (setq dirvish-vscode-icon-size 24) ;; Make the icons a little smaller
+  (setq dired-listing-switches "--all --time-style=locale --group-directories-first --human-readable --no-group -g"))
 
 ;; Permissions problems when trying to use the mac trash based delete
 (setq delete-by-moving-to-trash nil)
@@ -25,7 +28,8 @@
                                      ("g" "~/Git_Repos" "Git Repos")
                                      ("d" "~/.config/doom" "Doom")
                                      ("t" "/tmp" "tmp")
-                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")))
+                                     ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")
+                                     ("v" "/Volumes")))
 
 (setq dirvish-emerge-groups '(
   ("Directories" (predicate . directories))
