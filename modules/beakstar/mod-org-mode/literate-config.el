@@ -36,3 +36,6 @@
 (org-babel-do-load-languages
     org-babel-load-languages
     '((dot . t)))
+
+(setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Just tasks to report later")
+                               "* TODO %?" :empty-lines-before 1 :empty-lines-after 1)))

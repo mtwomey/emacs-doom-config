@@ -59,7 +59,8 @@ This isn't always enabled when Dirvish / Dired starts, this makes sure it is.
                                      ("d" "~/.config/doom" "Doom")
                                      ("t" "/tmp" "tmp")
                                      ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")
-                                     ("v" "/Volumes")))
+                                     ("v" "/Volumes")
+                                     ("o" "~/org-mode")))
 #+end_src
 
 * Set Dirvish Emerge settings (e.g. the "grouping" functionality)

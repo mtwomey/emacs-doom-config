@@ -94,7 +94,13 @@ This allows me to make graphviz images in org-mode files using a test block like
     '((dot . t)))
 #+end_src
 
-* Image Drawers
+* Capture Templates
+
+#+begin_src emacs-lisp
+(setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Just tasks to report later")
+                               "* %?" :empty-lines-before 1 :empty-lines-after 1)))
+#+end_src
+
 * Previous / unused stuff
 
 Note the =:tangle no= on this block which prevents it from being used.
@@ -206,6 +212,8 @@ Note the =:tangle no= on this block which prevents it from being used.
                               ("?" "Do it later, maybe" entry (file+headline "~/org-mode/tasks-todo.org" "Do later, maybe...")
                                "* ☛ TODO %?" :empty-lines-before 1 :empty-lines-after 1)
                               ("l" "Do it way later" entry (file+headline "~/org-mode/tasks-todo.org" "Things for way later")
+                               "* ☛ TODO %?" :empty-lines-before 1 :empty-lines-after 1)
+                              ("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Just tasks to report later")
                                "* ☛ TODO %?" :empty-lines-before 1 :empty-lines-after 1)))
 
 (setq org-capture-bookmark nil) ;; Don't store bookmark of last capture

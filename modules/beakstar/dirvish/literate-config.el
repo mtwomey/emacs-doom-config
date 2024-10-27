@@ -29,7 +29,8 @@
                                      ("d" "~/.config/doom" "Doom")
                                      ("t" "/tmp" "tmp")
                                      ("b" "/Volumes/OMV_Documents/Documents/Boardgames" "Boardgames")
-                                     ("v" "/Volumes")))
+                                     ("v" "/Volumes")
+                                     ("o" "~/org-mode")))
 
 (setq dirvish-emerge-groups '(
   ("Directories" (predicate . directories))
