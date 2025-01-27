@@ -1,0 +1,40 @@
+#+TITLE: PH Scroll
+:properties:
+#+OPTIONS: toc:nil author:nil timestamp:nil num:nil ^:nil
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;} </style>
+#+HTML_HEAD_EXTRA: <style> table, th, td {border: solid 1px; font-family: monospace;} </style>
+#+HTML_HEAD_EXTRA: <style> td {padding: 5px;} </style>
+#+HTML_HEAD_EXTRA: <style> th.org-right {text-align: right;} th.org-left {text-align: left;} </style>
+#+startup: shrink
+:end:
+
+From here: https://github.com/misohena/phscroll
+
+This allow disabling word-wrap for /part/ of a document. Useful for having wide tables in org-mode.
+
+* Load the package
+
+#+begin_src emacs-lisp
+(let ((old-load-path load-path))
+  (add-to-list 'load-path (file-name-directory load-file-name))
+  (load "phscroll")
+  (load "org-phscroll")
+  (setq load-path old-load-path))
+#+end_src
+
+
+* Hook org-mode
+
+#+begin_src emacs-lisp
+(setq org-startup-truncated nil)
+(with-eval-after-load "org"
+  (require 'org-phscroll))
+#+end_src
+
+
+* Provide the package
+
+#+begin_src emacs-lisp
+(provide 'phscroll)
+(provide 'org-phscroll)
+#+end_src
