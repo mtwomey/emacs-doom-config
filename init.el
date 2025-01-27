@@ -229,4 +229,5 @@
        ;;copilot
        dbt
        mod-python
+       phscroll
        )
