@@ -59,4 +59,6 @@
 (package! ivy-clojuredocs)
 (package! logview)
 (package! vscode-icon)
-;;(package! csv-mode)
+(package! csv-mode)
+(package! mermaid-mode)
+;; (package! org-superstar)

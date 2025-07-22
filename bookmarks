@@ -4,10 +4,10 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
  (filename . "~/org-mode/robert-half/time-tracking.org")
- (front-context-string . "** ☛ TODO This i")
- (rear-context-string . "o report later\n\n")
- (position . 31)
- (last-modified 26398 49931 378874 0))
+ (front-context-string)
+ (rear-context-string . "n dev\n\n* Test1\n\n")
+ (position . 339)
+ (last-modified 26408 59404 409937 0))
 ("core"
  (filename . "/sshx:mtwomey@core:~")
  (front-context-string . "core\n dr")

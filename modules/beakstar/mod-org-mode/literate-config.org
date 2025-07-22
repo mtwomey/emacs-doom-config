@@ -34,8 +34,12 @@
 ** Bullets
 
 #+begin_src emacs-lisp
-(setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
-(setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+;; (setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
+;; (setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+
+(setq org-modern-list '((?* . "•") (?+ . "◦") (?- . "•"))
+      org-modern-replace-stars "⊛⊗⊙✿"
+      org-modern-star 'replace)
 #+end_src
 
 ** Raise the bullets up just a tad
@@ -99,6 +103,22 @@ This allows me to make graphviz images in org-mode files using a test block like
 #+begin_src emacs-lisp
 (setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Just tasks to report later")
                                "* %?" :empty-lines-before 1 :empty-lines-after 1)))
+
+(setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Test1")
+                               "- %?" :empty-lines-before 1 :empty-lines-after 0)))
+#+end_src
+
+* Stuff do do when entering org-mode
+
+#+begin_src emacs-lisp :tangle no
+(add-hook 'org-mode-hook (lambda ()
+                           (org-superstar-mode 1) ;; Enable fancy buttets
+                           (setq org-hide-emphasis-markers t) ;; Hide the work markup tags
+                           (buffer-face-mode) ;; Allow a default face (org-default) for org-mode specifically
+                           (flycheck-mode 0) ;; Disable flycheck
+                           (flyspell-mode t) ;; Enable flyspell
+                           (setq org-time-stamp-custom-formats '("<%A %b %-e>" . "<%A %b %-e %-l:%M %p>")) ;; Format for timestamp overlay
+                           (setq org-display-custom-times t))) ;; Use timestamp overlays))
 #+end_src
 
 * Previous / unused stuff
