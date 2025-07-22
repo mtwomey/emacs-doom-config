@@ -1,0 +1,7 @@
+# name: +begin_src sql
+# key: %sql
+# --
+
+#+begin_src sql
+$0
+#+end_src
