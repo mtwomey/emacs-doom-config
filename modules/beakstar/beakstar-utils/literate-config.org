@@ -176,7 +176,8 @@ You can see the current height with =(face-attribute 'default :height)=.
 (defun reset-font-scale ()
   (interactive)
   (set-face-attribute 'default nil :height 140)
-  (text-scale-set 0))
+  (text-scale-set 0)
+  (text-scale-mode 0))
 #+end_src
 
 * Move sexp
@@ -219,7 +220,6 @@ I didn't do the math on exactly what's going on here bitwise myself. I'm nearly 
                         (random (expt 16 4)) (random (expt 16 4)) (random (expt 16 4)))))
       (insert (concat uuid "\n")))))
 #+end_src
-
 
 * JSDocs
 
@@ -321,6 +321,69 @@ This was tricky to get working because opening a terminal and then running a com
       (message "No file selected"))))
 #+end_src
 
+* Random functions
+
+#+begin_src emacs-lisp
+(defun capitalize-words-in-region (start end)
+  "Capitalize the first letter of every word in the selected region."
+  (interactive "r")
+  (save-excursion
+    (goto-char start)
+    (while (< (point) end)
+      (let ((word-start (point)))
+        (forward-word)
+        (capitalize-region word-start (point))))))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun insert-number-range (start end)
+  "Insert a range of numbers from START to END, one per line.
+If END is less than START, the numbers will be in descending order.
+Numbers are inserted at the current column on each line,
+inserting into existing text if present, or creating new lines as needed."
+  (interactive "nStart number: \nnEnd number: ")
+  (let ((current start)
+        (step (if (<= start end) 1 -1))
+        (column (current-column))
+        (last-line (line-number-at-pos (point-max))))
+    (while (if (> step 0)
+               (<= current end)
+             (>= current end))
+      (move-to-column column t)
+      (insert (number-to-string current))
+      (setq current (+ current step))
+      (when (/= current (if (> step 0) (1+ end) (1- end)))
+        (if (= (line-number-at-pos) last-line)
+            (progn
+              (insert "\n")
+              (setq last-line (1+ last-line)))
+          (forward-line 1))))))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun seq-shuffle (sequence)
+  "Unrolled version of seq-sort-by"
+  (seq-map 'cdr
+           (sort (seq-map (lambda (x) (cons (random) x)) sequence)
+                 (lambda (a b)
+                   (<= (car a) (car b))))))
+#+end_src
+
+#+begin_src emacs-lisp
+(defun randomize-lines (start end)
+  "Randomize the lines in the region between START and END."
+  (interactive "r")
+  (if (use-region-p)
+      (let ((lines (split-string (buffer-substring start end) "\n" t))
+            (inhibit-modification-hooks t))
+        (delete-region start end)
+        (dolist (line (seq-shuffle lines))
+          (insert line "\n"))
+        (when (and (> end start)
+                   (= (char-before end) ?\n))
+          (delete-char -1)))
+    (message "No region selected. Please select a region first.")))
+#+end_src
 
 * Provide beakstar-utils
 

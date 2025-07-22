@@ -230,4 +230,5 @@
        dbt
        mod-python
        phscroll
+       mod-lsp
        )

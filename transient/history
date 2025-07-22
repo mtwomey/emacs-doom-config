@@ -78,8 +78,8 @@
   ("--ff-only"))
  (magit-pull nil)
  (magit-push nil
-             ("--force")
-             ("--force-with-lease"))
+             ("--force-with-lease")
+             ("--force"))
  (magit-rebase
   ("--autostash")
   nil)
