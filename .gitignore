@@ -1,3 +1,4 @@
 .DS_Store
 literate-config.el
 literate-init.el
+~/.config/doom/transient/history
