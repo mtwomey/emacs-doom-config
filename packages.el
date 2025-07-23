@@ -61,4 +61,3 @@
 (package! vscode-icon)
 (package! csv-mode)
 (package! mermaid-mode)
-;; (package! org-superstar)

@@ -1,0 +1,2 @@
+(package! embark)
+(package! marginalia)

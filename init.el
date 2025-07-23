@@ -231,4 +231,5 @@
        mod-python
        phscroll
        mod-lsp
+       embark
        )
