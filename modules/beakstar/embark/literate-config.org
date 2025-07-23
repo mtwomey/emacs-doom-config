@@ -14,8 +14,11 @@ Some intereting [[https://karthinks.com/software/fifteen-ways-to-use-embark/][ti
 
 * Setup Keymap
 
+Two bindings so it works in the mini-buffer as well as evil-mode states.
+
 #+begin_src emacs-lisp
-(map! :desc "next line"
+(map! :desc "embark actions"
+      "C-." 'embark-act
       :nvi "C-." 'embark-act)
 #+end_src
 
