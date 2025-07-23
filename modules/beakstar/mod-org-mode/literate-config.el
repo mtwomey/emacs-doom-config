@@ -11,8 +11,12 @@
       :nv "j" #'evil-next-visual-line
       :nv "k" #'evil-previous-visual-line)
 
-(setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
-(setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+;; (setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
+;; (setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
+
+(setq org-modern-list '((?* . "•") (?+ . "◦") (?- . "•"))
+      org-modern-replace-stars "⊛⊗⊙✿"
+      org-modern-star 'replace)
 
 (advice-add #'org-superstar--prettify-main-hbullet :after
             (lambda (&rest r)
@@ -38,4 +42,7 @@
     '((dot . t)))
 
 (setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Just tasks to report later")
-                               "* TODO %?" :empty-lines-before 1 :empty-lines-after 1)))
+                               "* %?" :empty-lines-before 1 :empty-lines-after 1)))
+
+(setq org-capture-templates '(("r" "Robert Half - Time Entry" entry (file+headline "~/org-mode/robert-half/time-tracking.org" "Test1")
+                               "- %?" :empty-lines-before 1 :empty-lines-after 0)))

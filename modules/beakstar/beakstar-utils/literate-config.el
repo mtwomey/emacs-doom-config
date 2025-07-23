@@ -128,7 +128,8 @@ Note: Assumes evil search, so you may need to tweak for your needs."
 (defun reset-font-scale ()
   (interactive)
   (set-face-attribute 'default nil :height 140)
-  (text-scale-set 0))
+  (text-scale-set 0)
+  (text-scale-mode 0))
 
 (defun cc/move-sexp-backward ()
   "Move balanced expression (sexp) to the right of point backward one sexp.
@@ -227,5 +228,59 @@ Point must be at the beginning of balanced expression (sexp)."
            (message command)
            (save-excursion (set-buffer "*scratch*") (shell-command command)))
       (message "No file selected"))))
+
+(defun capitalize-words-in-region (start end)
+  "Capitalize the first letter of every word in the selected region."
+  (interactive "r")
+  (save-excursion
+    (goto-char start)
+    (while (< (point) end)
+      (let ((word-start (point)))
+        (forward-word)
+        (capitalize-region word-start (point))))))
+
+(defun insert-number-range (start end)
+  "Insert a range of numbers from START to END, one per line.
+If END is less than START, the numbers will be in descending order.
+Numbers are inserted at the current column on each line,
+inserting into existing text if present, or creating new lines as needed."
+  (interactive "nStart number: \nnEnd number: ")
+  (let ((current start)
+        (step (if (<= start end) 1 -1))
+        (column (current-column))
+        (last-line (line-number-at-pos (point-max))))
+    (while (if (> step 0)
+               (<= current end)
+             (>= current end))
+      (move-to-column column t)
+      (insert (number-to-string current))
+      (setq current (+ current step))
+      (when (/= current (if (> step 0) (1+ end) (1- end)))
+        (if (= (line-number-at-pos) last-line)
+            (progn
+              (insert "\n")
+              (setq last-line (1+ last-line)))
+          (forward-line 1))))))
+
+(defun seq-shuffle (sequence)
+  "Unrolled version of seq-sort-by"
+  (seq-map 'cdr
+           (sort (seq-map (lambda (x) (cons (random) x)) sequence)
+                 (lambda (a b)
+                   (<= (car a) (car b))))))
+
+(defun randomize-lines (start end)
+  "Randomize the lines in the region between START and END."
+  (interactive "r")
+  (if (use-region-p)
+      (let ((lines (split-string (buffer-substring start end) "\n" t))
+            (inhibit-modification-hooks t))
+        (delete-region start end)
+        (dolist (line (seq-shuffle lines))
+          (insert line "\n"))
+        (when (and (> end start)
+                   (= (char-before end) ?\n))
+          (delete-char -1)))
+    (message "No region selected. Please select a region first.")))
 
 (provide 'beakstar-utils)

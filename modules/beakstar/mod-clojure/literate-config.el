@@ -13,14 +13,19 @@
         :eni "<down>"#'cider-repl-forward-input :desc "next command"
         :eni "C-j"#'cider-repl-forward-input)
 
-  (add-hook 'cider-mode-hook
-            (lambda ()
-                    (add-hook 'cider-after-eval-done-hook
-                              (lambda ()
-                                      (with-current-buffer (cider-current-repl 'clj)
-                                        (evil-normal-state)
-                                        (set-window-hscroll (get-buffer-window (cider-current-repl 'clj)) 0)
-                                        (cider-repl-closing-return)))))))
+  ;; This is causing an issue were I can't kill and restart my cljs repl with figwheel.
+  ;; I think it's becuase (cider-current-repl 'clj) evals to nil in that case. I'm not even
+  ;; sure if I want this anymore, commenting out for now.
+  ;;
+  ;; (add-hook 'cider-mode-hook
+  ;;           (lambda ()
+  ;;                   (add-hook 'cider-after-eval-done-hook
+  ;;                             (lambda ()
+  ;;                                     (with-current-buffer (cider-current-repl 'clj)
+  ;;                                       (evil-normal-state)
+  ;;                                       (set-window-hscroll (get-buffer-window (cider-current-repl 'clj)) 0)
+  ;;                                       (cider-repl-closing-return))))))
+  )
 
 (after! clojure-mode
   ;; Allow easy opening of babashka repl when editing stand alone babashka scripts
