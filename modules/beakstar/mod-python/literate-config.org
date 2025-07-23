@@ -58,3 +58,10 @@ This configures a profile for DAP debugging. There are two possibilities here "p
                                            :name "Python :: Run file (buffer)"
                                            :debugger "debugpy")))
 #+end_src
+
+* Setup Keymap
+
+#+begin_src emacs-lisp
+(map! :map python-mode-map
+      "C-c C-d" #'lsp-describe-thing-at-point)
+#+end_src
