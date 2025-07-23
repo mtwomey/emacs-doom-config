@@ -34,12 +34,10 @@
 ** Bullets
 
 #+begin_src emacs-lisp
-;; (setq org-superstar-headline-bullets-list '(?⊛ ?⊗ ?⊙ ?✿))
-;; (setq org-superstar-item-bullet-alist '((?* . ?•) (?+ . ?•) (?- . ?◦)))
-
-(setq org-modern-list '((?* . "•") (?+ . "◦") (?- . "•"))
-      org-modern-replace-stars "⊛⊗⊙✿"
-      org-modern-star 'replace)
+(add-hook 'org-mode-hook
+          (lambda () (setq org-modern-list '((?* . "•") (?+ . "◦") (?- . "•"))
+                 org-modern-replace-stars "⊛⊗⊙✿"
+                 org-modern-star 'replace)))
 #+end_src
 
 ** Raise the bullets up just a tad

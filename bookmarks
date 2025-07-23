@@ -3,11 +3,19 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
+<<<<<<< Updated upstream
  (filename . "~/org-mode/robert-half/time-tracking.org")
  (front-context-string)
  (rear-context-string . "n dev\n\n* Test1\n\n")
  (position . 339)
  (last-modified 26408 59404 409937 0))
+=======
+ (filename . "/Volumes/org-mode/robert-half/time-tracking.org")
+ (front-context-string)
+ (rear-context-string . "l as reviewing\n\n")
+ (position . 125)
+ (last-modified 26399 62132 883631 0))
+>>>>>>> Stashed changes
 ("core"
  (filename . "/sshx:mtwomey@core:~")
  (front-context-string . "core\n dr")

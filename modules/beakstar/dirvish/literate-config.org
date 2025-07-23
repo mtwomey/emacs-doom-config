@@ -108,6 +108,17 @@ This checks if =find-file= is being called on a directory or a file. It "loosely
                          (when is-file (+dired/quit-all)))))
 #+end_src
 
+* FD Search Customization
+
+#+begin_src emacs-lisp
+(defun dirvish-fd-current-dir (pattern)
+  "Run `fd' on current directory and go into Dired mode on a buffer of the output.
+This is a wrapper around `dirvish-fd' that always uses the current directory
+and prompts for the search pattern."
+  (interactive (list (completing-read-multiple "Pattern: " nil)))
+  (dirvish-fd default-directory pattern))
+#+end_src
+
 
 * Key Maps
 
@@ -117,7 +128,7 @@ This checks if =find-file= is being called on a directory or a file. It "loosely
 
 (map! :map dirvish-mode-map
       :desc "Perform fd search"
-      :nvi "/" #'dirvish-fd
+      :nvi "/" #'dirvish-fd-current-dir
       :desc "Live narrowing"
       :nvi "n" #'dirvish-narrow
       :desc "Sort current buffer"

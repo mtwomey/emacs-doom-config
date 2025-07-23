@@ -385,6 +385,65 @@ inserting into existing text if present, or creating new lines as needed."
     (message "No region selected. Please select a region first.")))
 #+end_src
 
+#+begin_src emacs-lisp
+(defun diagnose-pyright-conda-issue ()
+  "Diagnose why Pyright isn't finding conda packages."
+  (interactive)
+  (message "=== DIAGNOSING PYRIGHT + CONDA ISSUE ===")
+
+  ;; Check current environment
+  (message "\n--- ENVIRONMENT STATUS ---")
+  (message "CONDA_DEFAULT_ENV: %s" (getenv "CONDA_DEFAULT_ENV"))
+  (message "CONDA_PREFIX: %s" (getenv "CONDA_PREFIX"))
+  (message "VIRTUAL_ENV: %s" (getenv "VIRTUAL_ENV"))
+  (message "PATH: %s" (getenv "PATH"))
+
+  ;; Check conda-env.el status
+  (message "\n--- CONDA-ENV.EL STATUS ---")
+  (message "conda-env-current-name: %s"
+           (if (boundp 'conda-env-current-name) conda-env-current-name "not set"))
+  (message "conda-env-current-path: %s"
+           (if (boundp 'conda-env-current-path) conda-env-current-path "not set"))
+
+  ;; Check LSP settings
+  (message "\n--- LSP PYRIGHT SETTINGS ---")
+  (message "lsp-pyright-python-executable-cmd: %s"
+           (if (boundp 'lsp-pyright-python-executable-cmd) lsp-pyright-python-executable-cmd "not set"))
+  (message "lsp-pyright-venv-path: %s"
+           (if (boundp 'lsp-pyright-venv-path) lsp-pyright-venv-path "not set"))
+
+  ;; Check Python executable
+  (message "\n--- PYTHON EXECUTABLE ---")
+  (let ((python-cmd (executable-find "python"))
+        (python3-cmd (executable-find "python3")))
+    (message "which python: %s" python-cmd)
+    (message "which python3: %s" python3-cmd)
+
+    (when python-cmd
+      (let ((python-version (shell-command-to-string (format "%s --version" python-cmd))))
+        (message "python version: %s" (string-trim python-version))))
+
+    (when python-cmd
+      (let ((python-packages (shell-command-to-string (format "%s -m pip list 2>/dev/null | head -10" python-cmd))))
+        (message "sample packages:\n%s" python-packages))))
+
+  ;; Check project configuration
+  (message "\n--- PROJECT CONFIGURATION ---")
+  (let ((project-root (or (and (fboundp 'projectile-project-root)
+                               (projectile-project-root))
+                          default-directory)))
+    (message "Project root: %s" project-root)
+    (message "pyrightconfig.json exists: %s"
+             (file-exists-p (expand-file-name "pyrightconfig.json" project-root)))
+    (message "pyproject.toml exists: %s"
+             (file-exists-p (expand-file-name "pyproject.toml" project-root)))
+    (message ".venv exists: %s"
+             (file-exists-p (expand-file-name ".venv" project-root))))
+
+  (message "\n=== END DIAGNOSIS ==="))
+#+end_src
+
+
 * Provide beakstar-utils
 
 #+begin_src emacs-lisp
