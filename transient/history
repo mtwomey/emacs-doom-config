@@ -72,10 +72,9 @@
   ("-n256" "--graph" "--color" "--decorate")
   (("--" "ea_data_lake_dbt/models/utils/provided_by_eclipse/trial_balances_base.sql"))
   ("-n256" "--simplify-by-decoration" "--graph" "--color" "--decorate"))
- (magit-merge
-  ("--no-ff")
-  nil
-  ("--ff-only"))
+ (magit-merge nil
+              ("--no-ff")
+              ("--ff-only"))
  (magit-pull nil)
  (magit-push nil
              ("--force-with-lease")
