@@ -96,6 +96,13 @@ This allows me to make graphviz images in org-mode files using a test block like
     '((dot . t)))
 #+end_src
 
+** Don't make horizontal rules from "-----"
+
+#+begin_src emacs-lisp
+(setq org-modern-horizontal-rule nil)
+#+end_src
+
+
 * Capture Templates
 
 #+begin_src emacs-lisp
