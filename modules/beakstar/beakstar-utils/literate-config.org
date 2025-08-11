@@ -261,7 +261,8 @@ This is used in the switching buffers hydra and also mod-ivy to filter the buffe
           "*ts-ls*"
           "*ts-ls::stderr*"
           "*zprint-mode errors*"
-          "*semgrep-")
+          "*semgrep-"
+          "*ruff*")
         "Less important buffer names")
 #+end_src
 
