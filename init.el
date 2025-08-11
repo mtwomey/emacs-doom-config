@@ -232,4 +232,5 @@
        phscroll
        mod-lsp
        embark
+       mod-markdown
        )

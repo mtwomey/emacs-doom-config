@@ -23,6 +23,7 @@
 
 * Key Maps
 
+Note: these visual-line key maps is what makes "up" and "down" move "inside" the technical line and just to the next "real" line.
 #+begin_src emacs-lisp
 (map! :map org-mode-map
       :nv "j" #'evil-next-visual-line
@@ -30,7 +31,6 @@
 #+end_src
 
 * Look and Feel
-
 ** Bullets
 
 #+begin_src emacs-lisp
@@ -75,8 +75,6 @@ I debate whether this should go in my theme or if I want to control this separat
                                    :family "Hack")))))
 #+end_src
 
-
-
 ** Graphviz dot support
 
 This allows me to make graphviz images in org-mode files using a test block like this:
@@ -101,7 +99,6 @@ This allows me to make graphviz images in org-mode files using a test block like
 #+begin_src emacs-lisp
 (setq org-modern-horizontal-rule nil)
 #+end_src
-
 
 * Capture Templates
 
