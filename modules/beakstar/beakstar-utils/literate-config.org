@@ -262,7 +262,9 @@ This is used in the switching buffers hydra and also mod-ivy to filter the buffe
           "*ts-ls::stderr*"
           "*zprint-mode errors*"
           "*semgrep-"
-          "*ruff*")
+          "*ruff*"
+          "*xref*"
+          "*python-black.*")
         "Less important buffer names")
 #+end_src
 
